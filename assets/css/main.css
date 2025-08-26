@@ -2034,3 +2034,34 @@ a:hover {
         font-size: 1.6rem;
     }
 }
+/* Correction offset scroll pour header fixe */
+html {
+    scroll-padding-top: 40px; /* Hauteur header + marge sécurité */
+}
+
+/* Pour tous les éléments avec ID (sections) */
+section[id] {
+    scroll-margin-top: 40px;
+}
+
+/* Ajustement mobile - header plus compact */
+@media (max-width: 768px) {
+    html {
+        scroll-padding-top: 20px; /* Réduire sur mobile */
+    }
+    
+    section[id] {
+        scroll-margin-top: 20px;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 480px) {
+    html {
+        scroll-padding-top: 20px;
+    }
+    
+    section[id] {
+        scroll-margin-top: 20px;
+    }
+}
