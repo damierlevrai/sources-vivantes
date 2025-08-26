@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="https://schema.org/WebSite">
+<head>
+    <!-- Meta critiques -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0891b2">
+    
+    <!-- SEO Principal -->
+    <title>Sources Vivantes - Analyses de qualité des sources naturelles françaises</title>
+    <meta name="description" content="Découvrez la qualité de vos sources naturelles préférées. Analyses annuelles, données fiables et transparentes sur les sources d'eau douce françaises. QR codes sur site.">
+    <meta name="keywords" content="sources naturelles, qualité eau, analyses, sources france, eau potable, QR code sources, transparence sanitaire, eau douce">
+    <meta name="author" content="Sources Vivantes">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <!-- Canonical et alternates -->
+    <link rel="canonical" href="https://sources-vivantes.fr/">
+    <link rel="alternate" hreflang="fr" href="https://sources-vivantes.fr/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sources Vivantes - Analyses de qualité des sources naturelles">
+    <meta property="og:description" content="Découvrez la qualité de vos sources naturelles préférées. Analyses annuelles, données fiables et transparentes.">
+    <meta property="og:url" content="https://sources-vivantes.fr/">
+    <meta property="og:site_name" content="Sources Vivantes">
+    <meta property="og:image" content="https://sources-vivantes.fr/documents/images/hero-source.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Source naturelle analysée - Sources Vivantes">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sources Vivantes - Analyses de qualité des sources naturelles">
+    <meta name="twitter:description" content="Découvrez la qualité de vos sources naturelles préférées. Analyses annuelles, données fiables et transparentes.">
+    <meta name="twitter:image" content="https://sources-vivantes.fr/documents/images/hero-source.webp">
+    <meta name="twitter:image:alt" content="Source naturelle analysée - Sources Vivantes">
+    
+    <!-- Préconnexions critiques pour les performances -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//formspree.io">
+    <link rel="dns-prefetch" href="//maps.googleapis.com">
+    
+    <!-- Favicon et icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#0891b2">
+    
+    <!-- CSS critiques -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Google Fonts - Optimisé pour les performances -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"></noscript>
+    
+    <!-- Preloads non-critiques -->
+    <link rel="preload" as="image" href="documents/images/hero-source.webp">
+    
+    <!-- Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1M-SqfKIsQPUNUOhu6MED4WeYXOAyg1s&callback=initMap&libraries=geometry"></script>
+    
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://sources-vivantes.fr/#website",
+                "url": "https://sources-vivantes.fr/",
+                "name": "Sources Vivantes",
+                "description": "Analyses de qualité des sources naturelles françaises",
+                "inLanguage": "fr-FR",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Sources Vivantes",
+                    "url": "https://sources-vivantes.fr/"
+                }
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://sources-vivantes.fr/#organization",
+                "name": "Sources Vivantes",
+                "description": "Association pour la transparence de la qualité des sources naturelles",
+                "url": "https://sources-vivantes.fr/",
+                "foundingDate": "2025",
+                "areaServed": "France"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Configuration globale -->
+    <script>
+        const SOURCES_CONFIG = {
+            apiKey: 'YOUR_GOOGLE_MAPS_API_KEY',
+            baseUrl: 'https://sources-vivantes.fr',
+            siteName: 'Sources Vivantes',
+            contact: {
+                formspreeId: 'xkgzkldr', // À remplacer par votre ID Formspree
+                successMessage: "Merci ! Votre message a bien été envoyé. 💙",
+                errorMessage: "Une erreur s'est produite. Pouvez-vous réessayer ?"
+            },
+            shareMessages: {
+                default: "Découvrez la qualité de vos sources naturelles préférées sur Sources Vivantes ! Analyses fiables et transparentes : https://sources-vivantes.fr",
+                whatsapp: "🌊 Découvrez Sources Vivantes ! Des analyses fiables sur la qualité des sources naturelles françaises. Transparent et gratuit 👉 https://sources-vivantes.fr"
+            },
+            map: {
+                defaultCenter: { lat: 46.603354, lng: 1.888334 }, // Centre de la France
+                defaultZoom: 6
+            }
+        };
+        window.SOURCES_CONFIG = SOURCES_CONFIG;
+    </script>
+</head>
+
+<body>
+    <!-- Header principal avec navigation -->
+    <header class="main-header" role="banner">
+        <nav class="main-nav" role="navigation" aria-label="Navigation principale">
+            <div class="nav-container">
+                <div class="logo" aria-label="Logo Sources Vivantes">
+    <img src="documents/images/logo-nav.png" 
+         alt="Sources Vivantes - Logo" 
+         class="logo-image"
+         width="40" 
+         height="40"
+         loading="eager">
+    <span class="logo-text">Sources Vivantes</span>
+</div>
+                <ul class="nav-links" role="menubar">
+                    <li role="none">
+                        <a href="#accueil" role="menuitem" data-tooltip="Accueil" aria-label="Aller à l'accueil">
+                            <span class="nav-icon" aria-hidden="true">🏠</span>
+                            <span class="nav-text">Accueil</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#carte" role="menuitem" data-tooltip="Carte des sources" aria-label="Voir la carte des sources">
+                            <span class="nav-icon" aria-hidden="true">🗺️</span>
+                            <span class="nav-text">Carte</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#association" role="menuitem" data-tooltip="L'association" aria-label="Découvrir l'association">
+                            <span class="nav-icon" aria-hidden="true">🤝</span>
+                            <span class="nav-text">Association</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#ecologie" role="menuitem" data-tooltip="Impact écologique" aria-label="Impact écologique">
+                            <span class="nav-icon" aria-hidden="true">🌱</span>
+                            <span class="nav-text">Écologie</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#partenaires" role="menuitem" data-tooltip="Nos partenaires" aria-label="Voir nos partenaires">
+                            <span class="nav-icon" aria-hidden="true">🤝</span>
+                            <span class="nav-text">Partenaires</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#demande" role="menuitem" data-tooltip="Demande d'analyse" aria-label="Demander une analyse">
+                            <span class="nav-icon" aria-hidden="true">📝</span>
+                            <span class="nav-text">Demande</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="#contact" role="menuitem" data-tooltip="Contact" aria-label="Nous contacter">
+                            <span class="nav-icon" aria-hidden="true">✉️</span>
+                            <span class="nav-text">Contact</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenu principal -->
+    <main id="main-content" role="main">
+        <!-- Section Accueil -->
+        <section id="accueil" class="hero" role="banner" aria-labelledby="hero-title">
+            <div class="container">
+                <article class="hero-content">
+                    <header class="hero-header">
+                        <img src="documents/images/logo-sources-vivantes.webp" 
+                             alt="Logo Sources Vivantes - Analyses de sources naturelles"
+                             class="hero-logo"
+                             width="120"
+                             height="120"
+                             loading="eager"
+                             onerror="this.src='documents/images/logo-sources-vivantes.jpg'">
+                    </header>
+                    
+                    <div class="hero-message-card">
+                        <h1 id="hero-title" class="hero-main-title">Des données fiables sur vos sources préférées</h1>
+                        <p class="hero-subtitle">Analyses annuelles, transparence totale. Scannez le QR code devant votre source ou explorez notre carte interactive.</p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number" id="total-sources">5</span>
+                                <span class="stat-label">Sources analysées</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="conformes">4</span>
+                                <span class="stat-label">Conformes</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">365</span>
+                                <span class="stat-label">Jours/an</span>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-cta">
+                            <a href="#carte" 
+                               class="hero-cta-button-primary" 
+                               aria-label="Voir la carte des sources analysées">
+                                <span class="cta-icon" aria-hidden="true">🗺️</span>
+                                <span class="cta-text">Voir la carte</span>
+                            </a>
+                            <button onclick="openSourceDemo()" 
+                                    class="hero-cta-button-secondary" 
+                                    aria-label="Voir un exemple d'analyse">
+                                <span class="cta-icon" aria-hidden="true">📊</span>
+                                <span class="cta-text">Exemple d'analyse</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section Pourquoi -->
+        <section id="pourquoi" class="section" aria-labelledby="pourquoi-title">
+            <div class="container">
+                <h2 id="pourquoi-title">Pourquoi Sources Vivantes ?</h2>
+                <div class="intro-text">
+                    <p class="section-subtitle">Un vide entre usage réel et information fiable</p>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🚰</div>
+                        <h3>Sources très fréquentées</h3>
+                        <p>Certaines sources comme le Boulou à Tursac reçoivent plusieurs dizaines de visiteurs par jour. Un patrimoine naturel vivant mais méconnu.</p>
+                    </article>
+                    
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">❓</div>
+                        <h3>Aucune donnée fiable</h3>
+                        <p>Les collectivités évitent souvent les tests pour éviter des responsabilités juridiques, laissant les usagers dans l'incertitude totale.</p>
+                    </article>
+                    
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🎯</div>
+                        <h3>Notre mission</h3>
+                        <p>Combler ce vide par des analyses annuelles rigoureuses, une transparence totale et un accès simple via QR codes sur site.</p>
+                    </article>
+                </div>
+
+                <blockquote class="quote-highlight">
+                    "Entre usage réel et données fiables, il y avait un vide. Nous le comblons."
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Section Carte -->
+        <section id="carte" class="section" style="background: rgba(8, 145, 178, 0.05);" aria-labelledby="carte-title">
+            <div class="container">
+                <h2 id="carte-title">Carte des sources analysées</h2>
+                <div class="intro-text">
+                    <p class="section-subtitle">Trouvez les sources analysées près de chez vous</p>
+                </div>
+
+                <div class="map-container">
+                    <div class="map-controls">
+                        <button onclick="locateUser()" class="map-control-btn" aria-label="Me localiser">
+                            <span class="control-icon">📍</span>
+                            <span class="control-text">Me localiser</span>
+                        </button>
+                        <div class="map-filters">
+                            <label class="filter-label">
+                                <input type="checkbox" id="filter-conforme" checked>
+                                <span class="filter-text">✅ Conformes</span>
+                            </label>
+                            <label class="filter-label">
+                                <input type="checkbox" id="filter-non-conforme" checked>
+                                <span class="filter-text">❌ Non conformes</span>
+                            </label>
+                            <label class="filter-label">
+                                <input type="checkbox" id="filter-attente" checked>
+                                <span class="filter-text">🔄 En attente</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="map" class="google-map" aria-label="Carte interactive des sources analysées"></div>
+                    
+                    <div class="map-legend">
+                        <h4>Légende</h4>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <span class="legend-marker conforme"></span>
+                                <span>Source conforme</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-marker non-conforme"></span>
+                                <span>Source non conforme</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-marker attente"></span>
+                                <span>Analyse en cours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-info">
+                    <p><strong>Cliquez sur un marqueur</strong> pour voir les détails d'analyse de la source</p>
+                    <p><strong>Vous connaissez une source ?</strong> <a href="#demande">Proposez-la pour analyse</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Association -->
+        <section id="association" class="section" aria-labelledby="association-title">
+            <div class="container">
+                <h2 id="association-title">L'association Sources Vivantes</h2>
+                <div class="intro-text">
+                    <p class="section-subtitle">Transparence, bénévolat et gouvernance ouverte</p>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">⚖️</div>
+                        <h3>Statut loi 1901</h3>
+                        <p>Association à but non lucratif, entièrement bénévole. Bureau élu démocratiquement, comptes publiés annuellement en toute transparence.</p>
+                    </article>
+                    
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🔬</div>
+                        <h3>Comité scientifique</h3>
+                        <p>Composé de laboratoires agréés, médecins, hydrogéologues. Validation des protocoles d'analyse et des critères de conformité.</p>
+                    </article>
+                    
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">📊</div>
+                        <h3>Mission claire</h3>
+                        <p>Informer sans se substituer aux autorités. Nous publions des données, nous ne donnons pas d'autorisation de consommation.</p>
+                    </article>
+                </div>
+
+                <div class="timeline">
+                    <h3>Notre feuille de route</h3>
+                    <div class="timeline-items">
+                        <div class="timeline-item active">
+                            <div class="timeline-year">2025</div>
+                            <div class="timeline-content">
+                                <h4>Phase pilote</h4>
+                                <p>5 sources en Dordogne, site web, analyses annuelles, QR codes sur site</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2026</div>
+                            <div class="timeline-content">
+                                <h4>Extension départementale</h4>
+                                <p>20 sources, partenariats institutionnels, automatisation des processus</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2027</div>
+                            <div class="timeline-content">
+                                <h4>Réseau national</h4>
+                                <p>Réseau inter-associatif, base de données centralisée, API publique</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Écologie -->
+        <section id="ecologie" class="section" style="background: rgba(5, 150, 105, 0.05);" aria-labelledby="ecologie-title">
+            <div class="container">
+                <h2 id="ecologie-title">Impact écologique</h2>
+                <div class="intro-text">
+                    <p class="section-subtitle">Préserver notre patrimoine naturel et réduire notre empreinte</p>
+                </div>
+
+                <div class="impact-grid">
+                    <article class="impact-card">
+                        <div class="impact-icon" aria-hidden="true">♻️</div>
+                        <h3>Réduction du plastique</h3>
+                        <p>Une alternative locale aux bouteilles d'eau. Si seulement 10% des usagers réduisent leur consommation de bouteilles, c'est des milliers de contenants plastiques évités chaque année.</p>
+                        <div class="impact-stat">
+                            <span class="stat-big">-50%</span>
+                            <span class="stat-desc">de bouteilles plastiques pour nos usagers réguliers</span>
+                        </div>
+                    </article>
+                    
+                    <article class="impact-card">
+                        <div class="impact-icon" aria-hidden="true">🌿</div>
+                        <h3>Patrimoine naturel</h3>
+                        <p>Les sources sont des écosystèmes fragiles. En les valorisant par l'information, nous encourageons leur respect et leur protection par les usagers.</p>
+                        <div class="impact-benefit">
+                            <span>→ Sensibilisation à la qualité de l'eau</span><br>
+                            <span>→ Respect des sites naturels</span><br>
+                            <span>→ Transmission aux générations futures</span>
+                        </div>
+                    </article>
+                    
+                    <article class="impact-card">
+                        <div class="impact-icon" aria-hidden="true">🏞️</div>
+                        <h3>Rôle social des sources</h3>
+                        <p>Au-delà de l'eau, les sources sont des lieux de rencontre, d'échange, de connexion avec la nature. Elles tissent du lien social dans nos territoires ruraux.</p>
+                        <div class="social-benefits">
+                            <div class="benefit-item">👥 Rencontres intergénérationnelles</div>
+                            <div class="benefit-item">📍 Points d'ancrage territorial</div>
+                            <div class="benefit-item">🚶‍♀️ Invitation à la randonnée</div>
+                        </div>
+                    </article>
+                </div>
+
+                <blockquote class="quote-highlight eco">
+                    "Chaque source préservée est un petit morceau de France qui reste vivant pour nos enfants."
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Section Partenaires -->
+        <section id="partenaires" class="section" aria-labelledby="partenaires-title">
+            <div class="container">
+                <h2 id="partenaires-title">Nos partenaires</h2>
+                <div class="intro-text">
+                    <p class="section-subtitle">Ensemble pour la transparence et la qualité</p>
+                </div>
+
+                <div class="partners-categories">
+                    <article class="partner-category">
+                        <h3>🔬 Laboratoires agréés</h3>
+                        <p>Analyses rigoureuses selon les normes européennes</p>
+                        <div class="partners-list">
+                            <div class="partner-item">
+                                <strong>Eurofins Environnement</strong>
+                                <span>Analyses bactériologiques et chimiques</span>
+                            </div>
+                            <div class="partner-item">
+                                <strong>CARSO</strong>
+                                <span>Expertise en hydrogéologie</span>
+                            </div>
+                            <div class="partner-item">
+                                <strong>IANESCO</strong>
+                                <span>Analyses spécialisées métaux lourds</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="partner-category">
+                        <h3>🏛️ Collectivités</h3>
+                        <p>Soutien institutionnel et logistique</p>
+                        <div class="partners-list">
+                            <div class="partner-item">
+                                <strong>Département de la Dordogne</strong>
+                                <span>Soutien technique et financier</span>
+                            </div>
+                            <div class="partner-item">
+                                <strong>Commune de Tursac</strong>
+                                <span>Autorisation et signalétique</span>
+                            </div>
+                            <div class="partner-item">
+                                <strong>Parc Naturel Périgord-Limousin</strong>
+                                <span>Expertise environnementale</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="partner-category">
+                        <h3>🌱 Associations</h3>
+                        <p>Réseau militant et écologique</p>
+                        <div class="partners-list">
+                            <div class="partner-item">
+                                <strong>France Nature Environnement</strong>
+                                <span>Relais d'information</span>
+                            </div>
+                            <div class="partner-item">
+                                <strong>Association des Maires Ruraux</strong>
+                                <span>Réseau territorial</span>
+                            </div>
+                            <div class="partner-item">
+                                <strong>Eau & Rivières</strong>
+                                <span>Expertise qualité de l'eau</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="partnership-cta">
+                    <h3>Vous souhaitez devenir partenaire ?</h3>
+                    <p>Laboratoires, collectivités, associations, entreprises engagées... Rejoignez notre réseau !</p>
+                    <a href="#contact" class="btn btn-primary">Nous contacter</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Demande d'analyse -->
+        <section id="demande" class="section" style="background: rgba(59, 130, 246, 0.05);" aria-labelledby="demande-title">
+            <div class="container">
+                <h2 id="demande-title">Proposer une source pour analyse</h2>
+                <div class="intro-text">
+                    <p class="section-subtitle">Vous connaissez une source fréquentée ? Aidez-nous à l'évaluer</p>
+                </div>
+
+                <div class="process-steps">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h3>Signalement</h3>
+                        <p>Vous nous indiquez la localisation, l'accès et votre estimation de la fréquentation</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h3>Évaluation</h3>
+                        <p>Notre équipe vérifie la faisabilité, la sécurité d'accès et l'intérêt public</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h3>Analyse</h3>
+                        <p>Si retenue, la source rejoint notre programme d'analyses annuelles</p>
+                    </div>
+                </div>
+
+                <div class="criteria-section">
+                    <h3>Critères de sélection</h3>
+                    <div class="criteria-grid">
+                        <div class="criterion-item">
+                            <span class="criterion-icon">👥</span>
+                            <span><strong>Fréquentation</strong> : Usage régulier par le public</span>
+                        </div>
+                        <div class="criterion-item">
+                            <span class="criterion-icon">🚗</span>
+                            <span><strong>Accessibilité</strong> : Accès praticable toute l'année</span>
+                        </div>
+                        <div class="criterion-item">
+                            <span class="criterion-icon">⚖️</span>
+                            <span><strong>Cadre légal</strong> : Accord des propriétaires/gestionnaires</span>
+                        </div>
+                        <div class="criterion-item">
+                            <span class="criterion-icon">💧</span>
+                            <span><strong>Source pérenne</strong> : Débit suffisant toute l'année</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="demande-form" 
+                      action="https://formspree.io/f/xkgzkldr"
+                      method="POST"
+                      onsubmit="handleDemandeSubmit(event)"
+                      aria-labelledby="demande-title">
+                      
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Nouvelle demande d'analyse de source">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="demande-nom">Votre nom/prénom</label>
+                            <input type="text" id="demande-nom" name="nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="demande-email">Votre email</label>
+                            <input type="email" id="demande-email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="demande-source-nom">Nom de la source (si connu)</label>
+                        <input type="text" id="demande-source-nom" name="source_nom" placeholder="Ex: Source du Boulou">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="demande-commune">Commune</label>
+                            <input type="text" id="demande-commune" name="commune" required placeholder="Ex: Tursac">
+                        </div>
+                        <div class="form-group">
+                            <label for="demande-departement">Département</label>
+                            <input type="text" id="demande-departement" name="departement" required placeholder="Ex: Dordogne">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="demande-localisation">Localisation précise</label>
+                        <textarea id="demande-localisation" name="localisation" rows="3" required
+                                  placeholder="Décrivez comment accéder à la source : depuis quel village, quels repères, parking, sentier..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="demande-frequentation">Fréquentation estimée</label>
+                        <select id="demande-frequentation" name="frequentation" required>
+                            <option value="">Choisir...</option>
+                            <option value="faible">Faible (moins de 5 personnes/semaine)</option>
+                            <option value="moderee">Modérée (5-20 personnes/semaine)</option>
+                            <option value="forte">Forte (plus de 20 personnes/semaine)</option>
+                            <option value="tres-forte">Très forte (plusieurs dizaines/jour)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="demande-infos">Informations complémentaires</label>
+                        <textarea id="demande-infos" name="infos_complementaires" rows="4"
+                                  placeholder="Tout ce qui peut nous aider : débit, qualité apparente, problèmes observés, historique, photos disponibles..."></textarea>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            📝 Proposer cette source
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Section Contact -->
+        <section id="contact" class="section" aria-labelledby="contact-title">
+            <div class="container">
+                <h2 id="contact-title">Nous contacter</h2>
+                <div class="intro-text">
+                    <p class="section-subtitle">Questions, partenariats, suggestions... Nous sommes à l'écoute</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Sources Vivantes</h3>
+                        <p>Association loi 1901<br>
+                        Pour la transparence de la qualité des sources naturelles</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-icon">📧</span>
+                                <a href="mailto:contact@sources-vivantes.fr">contact@sources-vivantes.fr</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">📍</span>
+                                <span>Dordogne, France</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">🕒</span>
+                                <span>Réponse sous 48h en moyenne</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" 
+                          action="https://formspree.io/f/xkgzkldr"
+                          method="POST"
+                          onsubmit="handleContactSubmit(event)"
+                          aria-labelledby="contact-title">
+                          
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-nom">Nom/prénom</label>
+                                <input type="text" id="contact-nom" name="nom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" name="email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-sujet">Sujet</label>
+                            <select id="contact-sujet" name="sujet" required>
+                                <option value="">Choisir un sujet...</option>
+                                <option value="question-generale">Question générale</option>
+                                <option value="partenariat">Proposition de partenariat</option>
+                                <option value="source-analyse">Demande d'analyse de source</option>
+                                <option value="probleme-technique">Problème technique</option>
+                                <option value="presse-media">Presse / Média</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Votre message</label>
+                            <textarea id="contact-message" name="message" rows="6" required
+                                      placeholder="Décrivez votre demande ou votre question..."></textarea>
+                        </div>
+
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                📨 Envoyer le message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-logo">
+    <img src="documents/images/logo-nav.png" 
+         alt="Sources Vivantes" 
+         class="footer-logo-image"
+         width="32" 
+         height="32"
+         loading="lazy">
+    <span class="logo-text">Sources Vivantes</span>
+</div>
+                    <p class="footer-tagline">Pour la transparence de la qualité des sources naturelles</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Le projet</h4>
+                        <ul>
+                            <li><a href="#carte">Carte des sources</a></li>
+                            <li><a href="#association">L'association</a></li>
+                            <li><a href="#demande">Proposer une source</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Ressources</h4>
+                        <ul>
+                            <li><a href="#ecologie">Impact écologique</a></li>
+                            <li><a href="#partenaires">Nos partenaires</a></li>
+                            <li><button onclick="openDocument('mentions-legales')">Mentions légales</button></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:contact@sources-vivantes.fr">contact@sources-vivantes.fr</a></li>
+                            <li><a href="#contact">Formulaire de contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sources Vivantes - Association loi 1901</p>
+                <p>Fait avec 💙 pour la préservation de notre patrimoine naturel</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Système de notifications -->
+    <div id="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/modal-system.js"></script>
+    
+    <!-- Initialisation -->
+    <script>
+        // Fonctions de gestion des formulaires
+        window.handleContactSubmit = async function(event) {
+            event.preventDefault();
+            return await handleFormSubmit(event, 'contact');
+        };
+
+        window.handleDemandeSubmit = async function(event) {
+            event.preventDefault();
+            return await handleFormSubmit(event, 'demande');
+        };
+
+        async function handleFormSubmit(event, type) {
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            submitButton.textContent = '📤 Envoi en cours...';
+            submitButton.disabled = true;
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    showNotification(SOURCES_CONFIG.contact.successMessage, 'success');
+                    form.reset();
+                } else {
+                    showNotification(SOURCES_CONFIG.contact.errorMessage, 'error');
+                }
+            } catch (error) {
+                showNotification(SOURCES_CONFIG.contact.errorMessage, 'error');
+            } finally {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+            return false;
+        }
+
+        // Fonction de démonstration
+        function openSourceDemo() {
+            openSource('demo');
+        }
+
+        // Initialisation au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser le système de modals
+            if (typeof initModalSystem === 'function') {
+                initModalSystem();
+            }
+            
+            // Initialiser la carte
+            if (typeof initMap === 'function') {
+                initMap();
+            }
+            
+            // Gestion des URLs directes
+            const urlParams = new URLSearchParams(window.location.search);
+            const sourceParam = urlParams.get('source');
+            if (sourceParam) {
+                setTimeout(() => openSource(sourceParam), 500);
+            }
+        });
+
+        // Système de notifications (réutilisé de Miroir.life)
+        function showNotification(message, type) {
+            const container = document.getElementById('notification-container');
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            
+            const colors = { 
+                success: '#10B981', 
+                error: '#EF4444', 
+                info: '#3B82F6' 
+            };
+            
+            notification.style.cssText = `
+                position: fixed; top: 20px; right: 20px;
+                background: ${colors[type]}; color: white;
+                padding: 1rem 2rem; border-radius: 12px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                z-index: 9999; font-weight: 600;
+                transform: translateX(100%); transition: transform 0.3s ease;
+                max-width: 400px; word-wrap: break-word;
+            `;
+            
+            container.appendChild(notification);
+            setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+    </script>
+
+    <!-- Styles pour accessibilité -->
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</body>
+</html>

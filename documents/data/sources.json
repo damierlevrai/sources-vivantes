@@ -1,0 +1,554 @@
+{
+  "metadata": {
+    "derniere_maj": "2025-08-25T10:30:00Z",
+    "version": "1.0.0",
+    "total_sources": 5,
+    "sources_conformes": 3,
+    "sources_non_conformes": 1,
+    "sources_en_attente": 1,
+    "region_pilote": "Dordogne",
+    "contact": "contact@sources-vivantes.fr"
+  },
+  
+  "laboratoires": {
+    "eurofins": {
+      "nom": "Eurofins Environnement",
+      "accreditation": "COFRAC",
+      "specialites": ["bactériologie", "chimie"]
+    },
+    "carso": {
+      "nom": "CARSO Laboratoires",
+      "accreditation": "COFRAC", 
+      "specialites": ["hydrogéologie", "métaux lourds"]
+    },
+    "ianesco": {
+      "nom": "IANESCO",
+      "accreditation": "COFRAC",
+      "specialites": ["métaux lourds", "pesticides"]
+    }
+  },
+  
+  "sources": {
+    "boulou_tursac": {
+      "id": "boulou_tursac",
+      "nom": "Source du Boulou",
+      "commune": "Tursac",
+      "departement": "Dordogne",
+      "code_postal": "24620",
+      "region": "Nouvelle-Aquitaine",
+      "coordonnees": {
+        "lat": 44.9759,
+        "lng": 1.0344,
+        "altitude": 145
+      },
+      "derniere_analyse": {
+        "date": "2025-06-15",
+        "statut": "conforme",
+        "laboratoire": "carso",
+        "numero_analyse": "CAR-2025-0615-BT",
+        "parametres": {
+          "nitrates": {
+            "valeur": 12.5,
+            "unite": "mg/L",
+            "limite": 50,
+            "conforme": true
+          },
+          "bacteries_coliformes": {
+            "valeur": 0,
+            "unite": "CFU/100mL",
+            "limite": 0,
+            "conforme": true
+          },
+          "ph": {
+            "valeur": 7.1,
+            "unite": "",
+            "limite_min": 6.5,
+            "limite_max": 9.0,
+            "conforme": true
+          },
+          "conductivite": {
+            "valeur": 380,
+            "unite": "µS/cm",
+            "conforme": true
+          },
+          "turbidite": {
+            "valeur": 0.5,
+            "unite": "NTU",
+            "limite": 4,
+            "conforme": true
+          },
+          "ammonium": {
+            "valeur": 0.1,
+            "unite": "mg/L",
+            "limite": 0.5,
+            "conforme": true
+          },
+          "nitrites": {
+            "valeur": 0.02,
+            "unite": "mg/L", 
+            "limite": 0.5,
+            "conforme": true
+          }
+        },
+        "certificat_url": "documents/analyses/boulou_2025_06_15.pdf"
+      },
+      "caracteristiques": {
+        "frequentation": "très forte",
+        "visiteurs_par_jour": "40-60",
+        "acces": {
+          "parking": "Gratuit, 50 places",
+          "distance_parking": "100m",
+          "duree_marche": "2 min",
+          "difficulte": "facile",
+          "pmr_accessible": true
+        },
+        "source": {
+          "type": "résurgence",
+          "debit": "constant",
+          "temperature": "12-14°C",
+          "profondeur": "source naturelle"
+        }
+      },
+      "description": "Source historique très appréciée des habitants et touristes. Mentionnée dans les archives locales depuis le 18ème siècle. Point de rassemblement traditionnel des randonneurs de la vallée de la Vézère.",
+      "photos": [
+        "documents/images/sources/boulou-tursac-1.webp",
+        "documents/images/sources/boulou-tursac-2.webp",
+        "documents/images/sources/boulou-tursac-panneau.webp"
+      ],
+      "qr_code_url": "documents/qr-codes/boulou-tursac.png",
+      "historique_analyses": [
+        {
+          "date": "2024-06-10",
+          "statut": "conforme",
+          "laboratoire": "carso",
+          "nitrates": 11.8,
+          "bacteries_coliformes": 0,
+          "ph": 7.2
+        },
+        {
+          "date": "2023-07-05",
+          "statut": "conforme", 
+          "laboratoire": "eurofins",
+          "nitrates": 13.2,
+          "bacteries_coliformes": 0,
+          "ph": 7.0
+        }
+      ],
+      "installation_qr": "2025-03-15",
+      "derniere_visite_terrain": "2025-06-10"
+    },
+
+    "fontaine_saint_martial": {
+      "id": "fontaine_saint_martial",
+      "nom": "Fontaine Saint-Martial",
+      "commune": "Saint-Martial-de-Nabirat",
+      "departement": "Dordogne",
+      "code_postal": "24250",
+      "region": "Nouvelle-Aquitaine",
+      "coordonnees": {
+        "lat": 44.8234,
+        "lng": 1.2156,
+        "altitude": 180
+      },
+      "derniere_analyse": {
+        "date": "2025-07-02",
+        "statut": "non-conforme",
+        "laboratoire": "eurofins",
+        "numero_analyse": "EUR-2025-0702-SM",
+        "parametres": {
+          "nitrates": {
+            "valeur": 62.0,
+            "unite": "mg/L",
+            "limite": 50,
+            "conforme": false,
+            "depassement": 24.0
+          },
+          "bacteries_coliformes": {
+            "valeur": 15,
+            "unite": "CFU/100mL",
+            "limite": 0,
+            "conforme": false
+          },
+          "ph": {
+            "valeur": 6.8,
+            "unite": "",
+            "limite_min": 6.5,
+            "limite_max": 9.0,
+            "conforme": true
+          },
+          "conductivite": {
+            "valeur": 580,
+            "unite": "µS/cm",
+            "conforme": true
+          },
+          "turbidite": {
+            "valeur": 2.1,
+            "unite": "NTU",
+            "limite": 4,
+            "conforme": true
+          },
+          "ammonium": {
+            "valeur": 0.3,
+            "unite": "mg/L",
+            "limite": 0.5,
+            "conforme": true
+          }
+        },
+        "problemes_identifies": [
+          "Taux de nitrates dépassant la limite (62 mg/L > 50 mg/L)",
+          "Présence de bactéries coliformes (15 CFU/100mL)",
+          "Possible contamination agricole en amont"
+        ],
+        "certificat_url": "documents/analyses/saint_martial_2025_07_02.pdf"
+      },
+      "caracteristiques": {
+        "frequentation": "modérée",
+        "visiteurs_par_jour": "10-15",
+        "acces": {
+          "parking": "Petit parking de village",
+          "distance_parking": "800m",
+          "duree_marche": "15 min",
+          "difficulte": "moyen",
+          "pmr_accessible": false
+        },
+        "source": {
+          "type": "fontaine villageoise",
+          "debit": "variable selon saison",
+          "temperature": "10-16°C",
+          "profondeur": "puits traditionnel"
+        }
+      },
+      "description": "Ancienne fontaine du village, traditionnellement utilisée par les habitants. Nécessite actuellement une surveillance renforcée en raison des résultats d'analyse.",
+      "photos": [
+        "documents/images/sources/saint-martial-1.webp",
+        "documents/images/sources/saint-martial-panneau.webp"
+      ],
+      "qr_code_url": "documents/qr-codes/saint-martial.png",
+      "recommandations_actuelles": [
+        "❌ Éviter la consommation directe",
+        "🔥 Faire bouillir l'eau avant tout usage",
+        "📅 Nouvelle analyse prévue en septembre 2025",
+        "📞 Contacter Sources Vivantes en cas d'évolution"
+      ],
+      "mesures_prises": [
+        "Signalement aux autorités sanitaires locales",
+        "Enquête pollution en cours avec la mairie",
+        "Panneau d'avertissement renforcé"
+      ],
+      "historique_analyses": [
+        {
+          "date": "2024-07-05",
+          "statut": "conforme",
+          "laboratoire": "eurofins", 
+          "nitrates": 45.2,
+          "bacteries_coliformes": 0,
+          "ph": 7.0
+        }
+      ],
+      "installation_qr": "2025-04-20",
+      "derniere_visite_terrain": "2025-07-08"
+    },
+
+    "source_claire_domme": {
+      "id": "source_claire_domme",
+      "nom": "Source Claire",
+      "commune": "Domme",
+      "departement": "Dordogne", 
+      "code_postal": "24250",
+      "region": "Nouvelle-Aquitaine",
+      "coordonnees": {
+        "lat": 44.8013,
+        "lng": 1.2134,
+        "altitude": 210
+      },
+      "derniere_analyse": {
+        "date": "2025-05-28",
+        "statut": "conforme",
+        "laboratoire": "ianesco",
+        "numero_analyse": "IAN-2025-0528-DC",
+        "parametres": {
+          "nitrates": {
+            "valeur": 8.7,
+            "unite": "mg/L",
+            "limite": 50,
+            "conforme": true
+          },
+          "bacteries_coliformes": {
+            "valeur": 0,
+            "unite": "CFU/100mL",
+            "limite": 0,
+            "conforme": true
+          },
+          "ph": {
+            "valeur": 7.6,
+            "unite": "",
+            "limite_min": 6.5,
+            "limite_max": 9.0,
+            "conforme": true
+          },
+          "conductivite": {
+            "valeur": 290,
+            "unite": "µS/cm",
+            "conforme": true
+          },
+          "turbidite": {
+            "valeur": 0.3,
+            "unite": "NTU",
+            "limite": 4,
+            "conforme": true
+          },
+          "metaux_lourds": {
+            "plomb": 0.001,
+            "cadmium": 0.0005,
+            "mercure": 0.0001,
+            "conforme": true
+          }
+        },
+        "certificat_url": "documents/analyses/domme_2025_05_28.pdf"
+      },
+      "caracteristiques": {
+        "frequentation": "forte",
+        "visiteurs_par_jour": "25-35",
+        "acces": {
+          "parking": "Parking du belvédère de Domme",
+          "distance_parking": "300m",
+          "duree_marche": "8 min",
+          "difficulte": "facile",
+          "pmr_accessible": true
+        },
+        "source": {
+          "type": "source de falaise",
+          "debit": "constant",
+          "temperature": "11-13°C",
+          "profondeur": "résurgence naturelle"
+        }
+      },
+      "description": "Source située sur le chemin des belvédères de Domme. Très appréciée des touristes visitant ce village classé 'Plus beaux villages de France'. Eau d'excellente qualité.",
+      "photos": [
+        "documents/images/sources/domme-claire-1.webp",
+        "documents/images/sources/domme-claire-2.webp",
+        "documents/images/sources/domme-belvedere.webp"
+      ],
+      "qr_code_url": "documents/qr-codes/domme-claire.png",
+      "points_forts": [
+        "✨ Qualité exceptionnelle de l'eau",
+        "🏔️ Cadre magnifique avec vue sur la vallée",
+        "🚶‍♀️ Accessible aux familles",
+        "📸 Spot photo apprécié"
+      ],
+      "historique_analyses": [
+        {
+          "date": "2024-05-15",
+          "statut": "conforme",
+          "laboratoire": "ianesco",
+          "nitrates": 9.1,
+          "bacteries_coliformes": 0,
+          "ph": 7.5
+        }
+      ],
+      "installation_qr": "2025-03-22",
+      "derniere_visite_terrain": "2025-05-20"
+    },
+
+    "lavoir_beynac": {
+      "id": "lavoir_beynac",
+      "nom": "Source du Lavoir",
+      "commune": "Beynac-et-Cazenac",
+      "departement": "Dordogne",
+      "code_postal": "24220", 
+      "region": "Nouvelle-Aquitaine",
+      "coordonnees": {
+        "lat": 44.8398,
+        "lng": 1.1426,
+        "altitude": 85
+      },
+      "derniere_analyse": {
+        "date": "2025-06-28",
+        "statut": "conforme",
+        "laboratoire": "carso",
+        "numero_analyse": "CAR-2025-0628-BC",
+        "parametres": {
+          "nitrates": {
+            "valeur": 18.3,
+            "unite": "mg/L", 
+            "limite": 50,
+            "conforme": true
+          },
+          "bacteries_coliformes": {
+            "valeur": 0,
+            "unite": "CFU/100mL",
+            "limite": 0,
+            "conforme": true
+          },
+          "ph": {
+            "valeur": 6.9,
+            "unite": "",
+            "limite_min": 6.5,
+            "limite_max": 9.0,
+            "conforme": true
+          },
+          "conductivite": {
+            "valeur": 445,
+            "unite": "µS/cm",
+            "conforme": true
+          },
+          "turbidite": {
+            "valeur": 0.7,
+            "unite": "NTU",
+            "limite": 4,
+            "conforme": true
+          }
+        },
+        "certificat_url": "documents/analyses/beynac_2025_06_28.pdf"
+      },
+      "caracteristiques": {
+        "frequentation": "forte",
+        "visiteurs_par_jour": "30-45",
+        "acces": {
+          "parking": "Parking payant du château",
+          "distance_parking": "200m",
+          "duree_marche": "5 min",
+          "difficulte": "facile",
+          "pmr_accessible": false
+        },
+        "source": {
+          "type": "source de village", 
+          "debit": "stable",
+          "temperature": "12-15°C",
+          "profondeur": "aménagement traditionnel"
+        }
+      },
+      "description": "Source alimentant l'ancien lavoir du village de Beynac. Point d'eau historique au pied du château classé. Très fréquentée par les visiteurs du site touristique.",
+      "photos": [
+        "documents/images/sources/beynac-lavoir-1.webp",
+        "documents/images/sources/beynac-lavoir-2.webp"
+      ],
+      "qr_code_url": "documents/qr-codes/beynac-lavoir.png",
+      "contexte_historique": "Cet ancien lavoir communal était le centre de la vie sociale du village. Les femmes s'y retrouvaient pour laver le linge et échanger les nouvelles.",
+      "historique_analyses": [
+        {
+          "date": "2024-06-20",
+          "statut": "conforme",
+          "laboratoire": "carso",
+          "nitrates": 16.9,
+          "bacteries_coliformes": 0,
+          "ph": 7.1
+        }
+      ],
+      "installation_qr": "2025-04-08",
+      "derniere_visite_terrain": "2025-06-25"
+    },
+
+    "source_neuve_analysis": {
+      "id": "source_neuve_analysis", 
+      "nom": "Source Neuve",
+      "commune": "Sarlat-la-Canéda",
+      "departement": "Dordogne",
+      "code_postal": "24200",
+      "region": "Nouvelle-Aquitaine", 
+      "coordonnees": {
+        "lat": 44.8912,
+        "lng": 1.2183,
+        "altitude": 165
+      },
+      "derniere_analyse": {
+        "date": "2025-08-10",
+        "statut": "attente",
+        "laboratoire": "eurofins",
+        "numero_analyse": "EUR-2025-0810-SN",
+        "parametres": {},
+        "note": "Prélèvements effectués, résultats attendus sous 10 jours ouvrés"
+      },
+      "caracteristiques": {
+        "frequentation": "modérée",
+        "visiteurs_par_jour": "15-20",
+        "acces": {
+          "parking": "Parking des jardins publics",
+          "distance_parking": "400m",
+          "duree_marche": "10 min",
+          "difficulte": "facile",
+          "pmr_accessible": true
+        },
+        "source": {
+          "type": "source urbaine",
+          "debit": "régulier",
+          "temperature": "13-16°C",
+          "profondeur": "captage moderne"
+        }
+      },
+      "description": "Source récemment intégrée au programme après signalement d'habitants de Sarlat. Première analyse en cours dans le cadre de l'extension du projet pilote.",
+      "photos": [
+        "documents/images/sources/sarlat-neuve-1.webp"
+      ],
+      "qr_code_url": "documents/qr-codes/sarlat-neuve.png",
+      "statut_projet": "nouveau",
+      "date_integration": "2025-07-15",
+      "installation_qr": "2025-08-01",
+      "contact_signalement": "Marie Dupont, habitante locale",
+      "prochaine_etape": "Publication des résultats d'analyse prévue fin août 2025"
+    }
+  },
+
+  "criteres_conformite": {
+    "nitrates": {
+      "limite": 50,
+      "unite": "mg/L",
+      "origine": "Directive européenne 98/83/CE"
+    },
+    "bacteries_coliformes": {
+      "limite": 0,
+      "unite": "CFU/100mL", 
+      "origine": "Arrêté du 11 janvier 2007"
+    },
+    "ph": {
+      "limite_min": 6.5,
+      "limite_max": 9.0,
+      "origine": "Directive européenne 98/83/CE"
+    },
+    "turbidite": {
+      "limite": 4,
+      "unite": "NTU",
+      "origine": "Code de la santé publique"
+    }
+  },
+
+  "programme_analyses": {
+    "frequence": "annuelle",
+    "periode_optimale": "mai-septembre",
+    "parametres_systematiques": [
+      "nitrates",
+      "bacteries_coliformes", 
+      "ph",
+      "conductivite",
+      "turbidite",
+      "ammonium",
+      "nitrites"
+    ],
+    "parametres_optionnels": [
+      "metaux_lourds",
+      "pesticides",
+      "hydrocarbures"
+    ],
+    "cout_analyse_standard": 280,
+    "cout_analyse_complete": 450,
+    "delai_resultats": "7-10 jours ouvrés"
+  },
+
+  "statistiques": {
+    "par_statut": {
+      "conforme": 3,
+      "non_conforme": 1,
+      "attente": 1
+    },
+    "par_type_source": {
+      "resurgence": 2,
+      "fontaine_village": 2,
+      "captage_moderne": 1
+    },
+    "taux_frequentation": {
+      "forte_tres_forte": 4,
+      "moderee": 1,
+      "faible": 0
+    }
+  }
+}
