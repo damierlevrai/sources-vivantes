@@ -115,6 +115,111 @@
         };
         window.SOURCES_CONFIG = SOURCES_CONFIG;
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sourceParam = urlParams.get('source');
+    
+    if (sourceParam) {
+        console.log('🎯 Source détectée:', sourceParam);
+        
+        // Trouver le nom de la source pour affichage
+        const sourceNames = {
+            'demo': 'Source de Démonstration',
+            'boulou_tursac': 'Source du Boulou - Tursac',
+            'source_claire_domme': 'Source Claire - Domme', 
+            'lavoir_beynac': 'Source du Lavoir - Beynac',
+            'fontaine_saint_martial': 'Fontaine Saint-Martial',
+            'source_neuve_analysis': 'Source Neuve - Sarlat'
+        };
+        
+        const sourceName = sourceNames[sourceParam] || 'Cette source';
+        
+        // Créer le bouton d'alerte visible
+        const alertBanner = document.createElement('div');
+        alertBanner.innerHTML = `
+            <div id="source-banner" style="
+                position: fixed; 
+                top: 80px; 
+                left: 50%; 
+                transform: translateX(-50%); 
+                background: linear-gradient(135deg, #0891b2, #059669); 
+                color: white; 
+                padding: 15px 25px; 
+                border-radius: 25px; 
+                font-weight: 600; 
+                box-shadow: 0 8px 30px rgba(8, 145, 178, 0.4);
+                z-index: 9999; 
+                cursor: pointer; 
+                text-align: center;
+                min-width: 280px;
+                font-size: 16px;
+                animation: slideIn 0.5s ease;
+            " onclick="openSourceFromBanner('${sourceParam}')">
+                🌊 ${sourceName}<br>
+                <span style="font-size: 14px; opacity: 0.9;">👆 Cliquez pour voir l'analyse</span>
+            </div>
+        `;
+        
+        // Ajouter CSS animation
+        if (!document.getElementById('banner-styles')) {
+            const styles = document.createElement('style');
+            styles.id = 'banner-styles';
+            styles.textContent = `
+                @keyframes slideIn {
+                    from { transform: translate(-50%, -100px); opacity: 0; }
+                    to { transform: translate(-50%, 0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(styles);
+        }
+        
+        document.body.appendChild(alertBanner);
+        
+        // Masquer après 15 secondes (ou laisser si on veut permanent)
+        setTimeout(() => {
+            const banner = document.getElementById('source-banner');
+            if (banner) {
+                banner.style.opacity = '0.7';
+                banner.innerHTML = `
+                    <div onclick="openSourceFromBanner('${sourceParam}')" style="cursor: pointer;">
+                        🌊 Voir l'analyse<br>
+                        <span style="font-size: 12px;">👆 Cliquez ici</span>
+                    </div>
+                `;
+            }
+        }, 15000);
+        
+        // Tentative automatique aussi (au cas où)
+        setTimeout(() => {
+            if (window.openSource && typeof window.openSource === 'function') {
+                // Tentative discrète, si ça marche le bouton n'est plus nécessaire
+                window.openSource(sourceParam);
+                // Masquer le bouton si modal s'ouvre
+                setTimeout(() => {
+                    const banner = document.getElementById('source-banner');
+                    const modal = document.getElementById('modal-overlay');
+                    if (banner && modal && modal.classList.contains('active')) {
+                        banner.remove();
+                    }
+                }, 500);
+            }
+        }, 2000);
+    }
+});
+
+// Fonction pour le clic sur bouton
+function openSourceFromBanner(sourceId) {
+    if (window.openSource && typeof window.openSource === 'function') {
+        window.openSource(sourceId);
+        // Masquer le bouton après ouverture
+        const banner = document.getElementById('source-banner');
+        if (banner) banner.remove();
+    } else {
+        alert('Erreur: Système non chargé. Actualisez la page.');
+    }
+}
+</script>
 </head>
 
 <body>
