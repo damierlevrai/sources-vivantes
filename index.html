@@ -43,10 +43,11 @@
     <link rel="dns-prefetch" href="//maps.googleapis.com">
     
     <!-- Favicon et icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <!-- Favicon et icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="documents/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="documents/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="documents/favicon/favicon-16x16.png">
+<link rel="manifest" href="documents/favicon/site.webmanifest">
     <meta name="msapplication-TileColor" content="#0891b2">
     
     <!-- CSS critiques -->
@@ -56,12 +57,10 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"></noscript>
     
-    <!-- Preloads non-critiques -->
-    <link rel="preload" as="image" href="documents/images/hero-source.webp">
     
-    <!-- Google Maps API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1M-SqfKIsQPUNUOhu6MED4WeYXOAyg1s&callback=initMap&libraries=geometry"></script>
     
+    <!-- Google Maps API -->    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1M-SqfKIsQPUNUOhu6MED4WeYXOAyg1s&callback=initMap&libraries=geometry&loading=async"></script>
     <!-- Structured Data JSON-LD -->
     <script type="application/ld+json">
     {
@@ -912,24 +911,22 @@ function openSourceFromBanner(sourceId) {
 
         // Initialisation au chargement
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialiser le système de modals
-            if (typeof initModalSystem === 'function') {
-                initModalSystem();
-            }
-            
-            // Initialiser la carte
-            if (typeof initMap === 'function') {
-                initMap();
-            }
-            
-            // Gestion des URLs directes
-            const urlParams = new URLSearchParams(window.location.search);
-            const sourceParam = urlParams.get('source');
-            if (sourceParam) {
-                setTimeout(() => openSource(sourceParam), 500);
-            }
-        });
-
+    // Initialiser le système de modals
+    if (typeof initModalSystem === 'function') {
+        initModalSystem();
+    }
+    
+    // NE PAS initialiser la carte ici - Google Maps le fera via callback
+    
+    // Gestion des URLs directes
+    const urlParams = new URLSearchParams(window.location.search);
+    const sourceParam = urlParams.get('source');
+    
+    if (sourceParam) {
+        console.log('🎯 Source détectée:', sourceParam);
+        // ... reste du code pour les sources
+    }
+});
         // Système de notifications (réutilisé de Miroir.life)
         function showNotification(message, type) {
             const container = document.getElementById('notification-container');
