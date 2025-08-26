@@ -2003,3 +2003,34 @@ a:hover {
         margin-bottom: 2px; /* Petit ajustement vertical */
     }
 }
+/* Correction stats mobile - débordement */
+@media (max-width: 768px) {
+    .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        padding: 1rem 0.5rem;
+        margin: 1rem 0.5rem;
+        max-width: calc(100vw - 1rem);
+        box-sizing: border-box;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-stats {
+        gap: 0.3rem;
+        padding: 0.8rem 0.3rem;
+        margin: 1rem 0.3rem;
+    }
+    
+    .stat-number {
+        font-size: 1.6rem;
+    }
+}
