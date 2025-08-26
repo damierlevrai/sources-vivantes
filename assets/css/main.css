@@ -1507,3 +1507,499 @@ a:hover {
         page-break-inside: avoid;
     }
 }
+
+/* ============================================
+   CSS CORRECTIONS SOURCES VIVANTES
+   À ajouter à la fin de main.css
+   ============================================ */
+
+/* ============================================
+   1. CENTRER ICÔNES ET TITRES DES CARTES
+   ============================================ */
+
+/* Cartes features (Sources fréquentées, Aucune donnée, Notre mission) */
+.feature-card {
+    text-align: center; /* Centrer tout le contenu */
+}
+
+.feature-card .feature-icon {
+    text-align: center;
+    margin: 0 auto 1.5rem; /* Centrer et espacer */
+}
+
+.feature-card h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.feature-card p {
+    text-align: left; /* Paragraphes alignés à gauche pour lisibilité */
+    margin-bottom: 1rem;
+}
+
+/* Cartes impact (Réduction plastique, Patrimoine, Rôle social) */
+.impact-card {
+    text-align: center; /* Centrer tout le contenu */
+}
+
+.impact-card .impact-icon {
+    text-align: center;
+    margin: 0 auto 1.5rem; /* Centrer et espacer */
+}
+
+.impact-card h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.impact-card p {
+    text-align: left; /* Paragraphes alignés à gauche pour lisibilité */
+    margin-bottom: 1rem;
+}
+
+/* Cartes echo (autres sections) */
+.echo-card {
+    text-align: center;
+}
+
+.echo-card h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.echo-card p {
+    text-align: left; /* Paragraphes alignés à gauche */
+    margin-bottom: 1rem;
+}
+
+/* Cartes partenaires */
+.partner-category {
+    text-align: center;
+}
+
+.partner-category h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.partner-category p {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.partners-list {
+    text-align: left; /* Liste alignée à gauche pour lisibilité */
+}
+
+/* ============================================
+   2. CORRIGER LA TIMELINE "FEUILLE DE ROUTE"
+   ============================================ */
+
+/* Nouvelle timeline sans ligne qui coupe */
+.timeline {
+    margin: 3rem 0;
+}
+
+.timeline h3 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--primary-blue);
+    font-size: 1.5rem;
+}
+
+/* Container timeline sans ligne à gauche */
+.timeline-items {
+    position: relative;
+    padding-left: 0; /* Supprimer le padding gauche */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Supprimer la ligne verticale */
+.timeline-items::before {
+    display: none;
+}
+
+/* Refonte complète des items timeline */
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    display: block; /* Changer de flex à block */
+    background: var(--bg-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    padding: 2rem;
+    border-left: 4px solid var(--primary-blue);
+    transition: var(--transition-normal);
+}
+
+.timeline-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.timeline-item.active {
+    border-left-color: var(--primary-green);
+    background: linear-gradient(135deg, 
+        rgba(8, 145, 178, 0.05), 
+        rgba(5, 150, 105, 0.03));
+}
+
+/* Supprimer les anciens cercles */
+.timeline-item::before {
+    display: none;
+}
+
+/* Année en badge au lieu de colonne */
+.timeline-year {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Contenu timeline */
+.timeline-content {
+    margin-top: 1rem;
+}
+
+.timeline-content h4 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    text-align: left;
+}
+
+.timeline-content p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: left;
+    margin: 0;
+}
+
+/* ============================================
+   3. NAVIGATION MOBILE - MASQUER LOGO
+   ============================================ */
+
+/* Navigation mobile améliorée */
+@media (max-width: 768px) {
+    /* Masquer le logo sur mobile */
+    .logo {
+        display: none;
+    }
+    
+    /* Centrer la navigation */
+    .nav-container {
+        justify-content: center; /* Centrer au lieu de space-between */
+        padding: 0 10px;
+    }
+    
+    /* Ajuster les liens navigation mobile */
+    .nav-links {
+        gap: 0.3rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .nav-links a {
+        padding: 0.8rem 0.6rem;
+        border-radius: 12px;
+        min-width: 48px;
+        min-height: 48px;
+        justify-content: center;
+        font-size: 0.9rem;
+    }
+    
+    /* Icônes légèrement plus grandes sur mobile */
+    .nav-icon {
+        font-size: 1.2rem;
+    }
+}
+
+/* Navigation très petits écrans */
+@media (max-width: 480px) {
+    .nav-links {
+        gap: 0.2rem;
+    }
+    
+    .nav-links a {
+        padding: 0.6rem 0.4rem;
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .nav-icon {
+        font-size: 1.1rem;
+    }
+}
+
+/* ============================================
+   4. AMÉLIORATIONS SUPPLÉMENTAIRES
+   ============================================ */
+
+/* Assurer le centrage des stats hero sur mobile */
+@media (max-width: 768px) {
+    .hero-stats {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .stat-item {
+        text-align: center;
+    }
+}
+
+/* Améliorer l'espacement des cartes sur mobile */
+@media (max-width: 768px) {
+    .feature-grid,
+    .impact-grid,
+    .echo-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .feature-card,
+    .impact-card,
+    .echo-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Centrage parfait des icônes sur tous écrans */
+.feature-icon,
+.impact-icon {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+/* Timeline responsive */
+@media (max-width: 768px) {
+    .timeline-item {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .timeline-year {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .timeline-content h4 {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-content p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Améliorer l'affichage des quotes sur mobile */
+@media (max-width: 768px) {
+    .quote-highlight {
+        padding: 1.5rem;
+        font-size: 1.1rem;
+        margin: 2rem 0;
+    }
+}
+/* ============================================
+   FOOTER MOBILE - CORRECTIONS FINALES
+   À ajouter à la fin de main.css
+   ============================================ */
+
+/* ============================================
+   1. FOOTER MAIN - LOGO + TAGLINE CENTRÉ MOBILE
+   ============================================ */
+
+/* Desktop : logo + texte sur même ligne, aligné à gauche */
+.footer-main {
+    text-align: left;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+/* Mobile : tout centré, logo et texte empilés */
+@media (max-width: 768px) {
+    .footer-main {
+        text-align: center; /* Centrer tout sur mobile */
+    }
+    
+    .footer-logo {
+        justify-content: center; /* Centrer le logo */
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+    }
+    
+    .footer-tagline {
+        text-align: center; /* Centrer le tagline */
+        margin: 0 auto;
+        max-width: 280px; /* Limiter largeur pour éviter lignes trop longues */
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.9); /* Légèrement plus visible */
+    }
+    
+    /* Espacement footer sur mobile */
+    .footer-content {
+        gap: 2rem; /* Réduire gap sur mobile */
+        text-align: center;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 480px) {
+    .footer-logo {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .footer-tagline {
+        font-size: 0.95rem;
+        max-width: 250px;
+    }
+}
+
+/* ============================================
+   2. FOOTER BOTTOM - AMÉLIORER CONTRASTE
+   ============================================ */
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Border plus visible */
+    /* Améliorer drastiquement le contraste */
+    color: rgba(255, 255, 255, 0.9); /* Était 0.6, maintenant 0.9 */
+    background: rgba(0, 0, 0, 0.2); /* Ajouter un léger fond sombre */
+    margin-top: 1rem;
+    border-radius: 8px 8px 0 0;
+}
+
+.footer-bottom p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500; /* Ajouter du poids pour plus de lisibilité */
+    /* Couleur plus contrastée */
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Mobile : améliorer encore le contraste */
+@media (max-width: 768px) {
+    .footer-bottom {
+        color: rgba(255, 255, 255, 0.95); /* Encore plus visible sur mobile */
+        background: rgba(0, 0, 0, 0.3); /* Fond un peu plus sombre */
+        padding: 1.5rem 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .footer-bottom p {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.98); /* Quasi blanc */
+        margin-bottom: 0.4rem;
+        line-height: 1.4;
+    }
+}
+
+/* ============================================
+   3. FOOTER COLUMNS - MOBILE RESPONSIVE
+   ============================================ */
+
+/* S'assurer que les colonnes footer sont bien centrées sur mobile */
+@media (max-width: 768px) {
+    .footer-links {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .footer-column {
+        text-align: center;
+    }
+    
+    .footer-column h4 {
+        color: rgba(8, 145, 178, 1); /* Plus visible */
+        margin-bottom: 0.8rem;
+        font-size: 1.05rem;
+    }
+    
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .footer-column li {
+        margin-bottom: 0.4rem;
+    }
+    
+    .footer-column a,
+    .footer-column button {
+        color: rgba(255, 255, 255, 0.9); /* Plus contrastés */
+        font-weight: 500;
+    }
+    
+    .footer-column a:hover,
+    .footer-column button:hover {
+        color: rgba(8, 145, 178, 0.8); /* Hover plus visible */
+    }
+}
+
+/* ============================================
+   4. STRUCTURE FOOTER GLOBAL MOBILE
+   ============================================ */
+
+/* Footer global sur mobile */
+@media (max-width: 768px) {
+    .main-footer {
+        padding: 2.5rem 0 1rem; /* Réduire padding top */
+    }
+    
+    /* Container footer mobile */
+    .footer-content {
+        display: block; /* Passer de grid à block sur mobile */
+        text-align: center;
+    }
+    
+    /* Ordre mobile : Main info en haut, puis colonnes */
+    .footer-main {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-links {
+        margin-bottom: 1rem;
+    }
+}
+
+/* ============================================
+   5. AMÉLIORATION LOGO FOOTER MOBILE
+   ============================================ */
+
+/* Si vous avez une image logo dans le footer */
+.footer-logo-image {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+    .footer-logo-image {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 2px; /* Petit ajustement vertical */
+    }
+}
