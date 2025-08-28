@@ -177,6 +177,9 @@ function generateSourceModalContent(source) {
     
     return `
         <div class="source-modal-content">
+            <!-- Photos de la source -->
+            ${source.photos ? generatePhotosSection(source.photos, source.nom) : ''}
+
             <!-- Statut principal -->
             <div class="source-status" style="background: ${config.color}20; border-left: 4px solid ${config.color}; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
                 <div style="display: flex; align-items: center; gap: 1rem;">
@@ -214,13 +217,24 @@ function generateSourceModalContent(source) {
             ${analyse.parametres ? generateParametersSection(analyse.parametres) : ''}
             ${analyse.problemes ? generateProblemsSection(analyse.problemes) : ''}
             ${source.recommandations ? generateRecommendationsSection(source.recommandations) : ''}
+
+            <!-- Sources médiatiques -->
+            ${source.sources_medias ? generateMediaSection(source.sources_medias) : ''}
+
             ${source.historique_analyses ? generateHistorySection(source.historique_analyses) : ''}
 
             <!-- Description -->
             <div class="source-description" style="margin: 2rem 0; padding: 1.5rem; background: rgba(8, 145, 178, 0.05); border-radius: 12px;">
                 <h4 style="color: #0891b2; margin-bottom: 1rem;">💧 À propos de cette source</h4>
                 <p>${source.description}</p>
+                ${source.legende_locale ? `<p style="margin-top: 1rem; font-style: italic; color: #6b7280;"><strong>Légende :</strong> ${source.legende_locale}</p>` : ''}
             </div>
+
+            <!-- Contexte historique spécial -->
+            ${source.historique_exceptionnel ? generateHistoricSection(source.historique_exceptionnel) : ''}
+
+            <!-- Informations pratiques -->
+            ${generatePracticalInfoSection(source)}
 
             <!-- Actions -->
             <div class="source-actions" style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
@@ -245,7 +259,180 @@ function generateSourceModalContent(source) {
     `;
 }
 
-function generateParametersSection(parametres) {
+function generatePhotosSection(photos, sourceName) {
+    if (!photos || photos.length === 0) return '';
+    
+    return `
+        <div class="photos-section" style="margin-bottom: 2rem;">
+            <div class="photos-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                ${photos.map(photo => `
+                    <div class="photo-item" style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        <img src="${photo}" 
+                             alt="${sourceName}" 
+                             style="width: 100%; height: 150px; object-fit: cover; cursor: pointer;"
+                             onclick="openPhotoModal('${photo}', '${sourceName}')"
+                             onerror="this.style.display='none'">
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+function generateMediaSection(sourcesMedias) {
+    if (!sourcesMedias || sourcesMedias.length === 0) return '';
+    
+    return `
+        <div class="media-section" style="margin: 2rem 0; padding: 1.5rem; background: rgba(59, 130, 246, 0.05); border-radius: 12px;">
+            <h4 style="color: #3b82f6; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>📰</span> Dans les médias
+            </h4>
+            <div class="media-list" style="display: flex; flex-direction: column; gap: 1rem;">
+                ${sourcesMedias.map(media => `
+                    <div class="media-item" style="padding: 1rem; background: white; border-radius: 8px; border-left: 3px solid #3b82f6;">
+                        <div style="display: flex; justify-content: between; align-items: start; gap: 1rem; flex-wrap: wrap;">
+                            <div style="flex: 1;">
+                                <p style="margin: 0 0 0.5rem; font-weight: 600; color: #1f2937;">
+                                    ${media.media || media.source}
+                                </p>
+                                <p style="margin: 0 0 0.5rem; font-size: 0.9rem; color: #6b7280;">
+                                    ${formatDate(media.date)}
+                                </p>
+                                ${media.citation ? `<p style="margin: 0; font-style: italic; color: #374151;">"${media.citation}"</p>` : ''}
+                            </div>
+                            ${media.url ? `
+                                <a href="${media.url}" 
+                                   target="_blank" 
+                                   style="background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; white-space: nowrap;">
+                                    📖 Lire l'article
+                                </a>
+                            ` : ''}
+                            ${media.contact || media.phone ? `
+                                <div style="font-size: 0.85rem; color: #6b7280;">
+                                    ${media.contact ? `<p style="margin: 0;">✉️ ${media.contact}</p>` : ''}
+                                    ${media.phone ? `<p style="margin: 0;">📞 ${media.phone}</p>` : ''}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+function generateHistoricSection(historique) {
+    if (!historique) return '';
+    
+    return `
+        <div class="historic-section" style="margin: 2rem 0; padding: 1.5rem; background: rgba(156, 163, 175, 0.1); border-radius: 12px;">
+            <h4 style="color: #6b7280; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>🏛️</span> Historique exceptionnel
+            </h4>
+            <div class="historic-timeline" style="display: grid; gap: 0.8rem;">
+                ${Object.entries(historique).map(([periode, description]) => `
+                    <div style="display: flex; gap: 1rem; align-items: start;">
+                        <span style="background: #6b7280; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600; text-transform: capitalize; white-space: nowrap;">
+                            ${periode.replace('_', ' ')}
+                        </span>
+                        <p style="margin: 0; color: #374151; flex: 1;">
+                            ${description}
+                        </p>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+function generatePracticalInfoSection(source) {
+    const caracteristiques = source.caracteristiques || {};
+    const sourceType = caracteristiques.source || {};
+    let sections = [];
+    
+    // Section caractéristiques de la source
+    if (sourceType.type || sourceType.debit || sourceType.temperature) {
+        sections.push(`
+            <div class="source-characteristics" style="margin-bottom: 1.5rem;">
+                <h5 style="color: #0891b2; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>🌊</span> Caractéristiques de la source
+                </h5>
+                <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid rgba(8, 145, 178, 0.1);">
+                    ${sourceType.type ? `<p style="margin: 0 0 0.5rem;"><strong>Type :</strong> ${sourceType.type}</p>` : ''}
+                    ${sourceType.debit ? `<p style="margin: 0 0 0.5rem;"><strong>Débit :</strong> ${sourceType.debit}</p>` : ''}
+                    ${sourceType.temperature ? `<p style="margin: 0;"><strong>Température :</strong> ${sourceType.temperature}</p>` : ''}
+                </div>
+            </div>
+        `);
+    }
+    
+    // Section usage réel
+    if (source.usage_reel) {
+        sections.push(`
+            <div class="real-usage" style="margin-bottom: 1.5rem;">
+                <h5 style="color: #10b981; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>👥</span> Usage observé
+                </h5>
+                <div style="background: rgba(16, 185, 129, 0.05); padding: 1rem; border-radius: 8px; border-left: 3px solid #10b981;">
+                    <p style="margin: 0; color: #047857; font-weight: 500;">${source.usage_reel}</p>
+                </div>
+            </div>
+        `);
+    }
+    
+    // Section avantage/problématique
+    if (source.avantage || source.problematique) {
+        sections.push(`
+            <div class="source-context" style="margin-bottom: 1.5rem;">
+                ${source.avantage ? `
+                    <div style="background: rgba(16, 185, 129, 0.05); padding: 1rem; border-radius: 8px; border-left: 3px solid #10b981; margin-bottom: 1rem;">
+                        <h6 style="color: #10b981; margin: 0 0 0.5rem; font-size: 0.9rem; font-weight: 600;">✅ Avantages</h6>
+                        <p style="margin: 0; color: #047857; font-size: 0.9rem;">${source.avantage}</p>
+                    </div>
+                ` : ''}
+                ${source.problematique ? `
+                    <div style="background: rgba(245, 158, 11, 0.05); padding: 1rem; border-radius: 8px; border-left: 3px solid #f59e0b;">
+                        <h6 style="color: #f59e0b; margin: 0 0 0.5rem; font-size: 0.9rem; font-weight: 600;">⚠️ Problématique</h6>
+                        <p style="margin: 0; color: #92400e; font-size: 0.9rem;">${source.problematique}</p>
+                    </div>
+                ` : ''}
+            </div>
+        `);
+    }
+    
+    if (sections.length === 0) return '';
+    
+    return `
+        <div class="practical-info" style="margin: 2rem 0;">
+            <h4 style="color: #0891b2; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>ℹ️</span> Informations pratiques
+            </h4>
+            ${sections.join('')}
+        </div>
+    `;
+}
+
+function openPhotoModal(photoUrl, sourceName) {
+    // Simple modal pour agrandir les photos
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.8); z-index: 10000; display: flex;
+        align-items: center; justify-content: center; cursor: pointer;
+    `;
+    
+    const img = document.createElement('img');
+    img.src = photoUrl;
+    img.alt = sourceName;
+    img.style.cssText = `
+        max-width: 90%; max-height: 90%; border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    `;
+    
+    modal.appendChild(img);
+    modal.addEventListener('click', () => modal.remove());
+    document.body.appendChild(modal);
+}
     if (!parametres) return '';
     
     let paramCards = '';
