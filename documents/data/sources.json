@@ -2,13 +2,13 @@
   "metadata": {
     "derniere_maj": "2025-08-28T15:00:00Z",
     "version": "1.1.0",
-    "total_sources": 4,
-    "sources_conformes": 1,
+    "total_sources": 5,
+    "sources_conformes": 2,
     "sources_non_conformes": 0,
     "sources_en_attente": 3,
     "region_pilote": "Dordogne",
     "contact": "contact@sources-vivantes.fr",
-    "note_importante": "Données réelles basées sur sources médiatiques et terrain"
+    "note_importante": "Données pour présentation - Phase pilote 2025"
   },
   
   "laboratoires": {
@@ -29,10 +29,74 @@
       "accreditation": "COFRAC",
       "specialites": ["métaux lourds", "pesticides"],
       "contact": "https://www.ianesco.fr"
+    },
+    "mairie_tursac": {
+      "nom": "Mairie de Tursac",
+      "accreditation": "Analyse municipale",
+      "specialites": ["contrôle potabilité"],
+      "contact": "mairie.tursac@wanadoo.fr"
     }
   },
   
   "sources": {
+    "demo": {
+      "id": "demo",
+      "nom": "Source de Démonstration",
+      "commune": "Exemple-sur-Vézère",
+      "departement": "Dordogne",
+      "code_postal": "24000",
+      "region": "Nouvelle-Aquitaine",
+      "coordonnees": {
+        "lat": 44.9759,
+        "lng": 1.0344,
+        "altitude": 150
+      },
+      "derniere_analyse": {
+        "date": "2025-06-15",
+        "statut": "conforme",
+        "laboratoire": "eurofins",
+        "numero_analyse": "DEMO-2025-001",
+        "parametres": {
+          "nitrates": 8.2,
+          "nitrates_limite": 50,
+          "bacteries": 0,
+          "bacteries_limite": 0,
+          "ph": 7.4,
+          "ph_min": 6.5,
+          "ph_max": 9.0,
+          "conductivite": 420,
+          "turbidite": 0.8
+        }
+      },
+      "caracteristiques": {
+        "frequentation": "forte",
+        "visiteurs_par_jour": "20-30 personnes",
+        "acces": {
+          "parking": "Parking à 100m",
+          "distance_parking": "100m",
+          "duree_marche": "5 min de marche",
+          "difficulte": "facile",
+          "pmr_accessible": true
+        },
+        "source": {
+          "type": "résurgence naturelle",
+          "debit": "constant toute l'année",
+          "temperature": "fraîche (12-14°C)",
+          "profondeur": "source naturelle"
+        }
+      },
+      "description": "Source de démonstration pour présentation du système Sources Vivantes. Eau claire et fraîche très appréciée des randonneurs.",
+      "photos": ["demo-source-1.webp", "demo-source-2.webp"],
+      "historique_analyses": [
+        {
+          "date": "2024-06-10",
+          "statut": "conforme",
+          "nitrates": 7.8,
+          "bacteries": 0
+        }
+      ]
+    },
+
     "boulou_tursac": {
       "id": "boulou_tursac",
       "nom": "Source du Boulou",
@@ -49,12 +113,12 @@
         "date": "2025-09-15",
         "statut": "attente",
         "laboratoire": "eurofins",
-        "numero_analyse": "A_PROGRAMMER",
+        "numero_analyse": "EN_ATTENTE",
         "note": "Première analyse prévue septembre 2025 - Sources Vivantes"
       },
       "caracteristiques": {
         "frequentation": "très forte",
-        "visiteurs_par_jour": "plusieurs dizaines",
+        "visiteurs_par_jour": "plusieurs dizaines selon France Bleu",
         "acces": {
           "parking": "Bord de route accessible",
           "distance_parking": "0m",
@@ -69,7 +133,7 @@
           "profondeur": "source naturelle"
         }
       },
-      "description": "Source historique très populaire au lieu-dit Le Boulou. Mentionnée dans les archives du 18e siècle. Point de rassemblement traditionnel des randonneurs de la vallée de la Vézère. Usage quotidien massif documenté.",
+      "description": "Source historique très populaire au lieu-dit Le Boulou. Mentionnée dans les archives du 18e siècle. Point de rassemblement traditionnel des randonneurs de la vallée de la Vézère. Usage quotidien massif documenté par France Bleu Périgord.",
       "sources_medias": [
         {
           "media": "France Bleu Périgord",
@@ -82,9 +146,6 @@
         "documents/images/sources/boulou-tursac-1.webp",
         "documents/images/sources/boulou-tursac-route.webp"
       ],
-      "qr_code_url": "documents/qr-codes/boulou-tursac.png",
-      "installation_qr": "2025-09-01",
-      "derniere_visite_terrain": "2025-08-15",
       "usage_reel": "Plusieurs dizaines de visiteurs quotidiens, eau réputée de très grande qualité",
       "problematique": "Aucune analyse officielle malgré usage massif"
     },
@@ -105,12 +166,12 @@
         "date": "2025-09-20",
         "statut": "attente",
         "laboratoire": "carso",
-        "numero_analyse": "A_PROGRAMMER",
+        "numero_analyse": "EN_ATTENTE",
         "note": "Première analyse prévue septembre 2025 - Sources Vivantes"
       },
       "caracteristiques": {
         "frequentation": "virale",
-        "visiteurs_par_jour": "files d'attente documentées",
+        "visiteurs_par_jour": "files d'attente documentées par médias",
         "acces": {
           "parking": "Bas-côté RN21",
           "distance_parking": "0m",
@@ -145,9 +206,6 @@
         "documents/images/sources/auvergnat-campsegret-1.webp",
         "documents/images/sources/auvergnat-files.webp"
       ],
-      "qr_code_url": "documents/qr-codes/auvergnat-campsegret.png",
-      "installation_qr": "2025-09-05",
-      "derniere_visite_terrain": "2025-08-20",
       "usage_reel": "Files d'attente régulières, phénomène viral médiatique",
       "problematique": "Aucune analyse malgré usage massif, propriétaire refuse responsabilité",
       "legende_locale": "Homme auvergnat aurait fait sauter pierre, eau jaillit miraculeusement"
@@ -171,14 +229,18 @@
         "laboratoire": "mairie_tursac",
         "numero_analyse": "MAIRIE-2020-FONTPEYRINE",
         "parametres": {
-          "potabilite_generale": {
-            "valeur": "conforme",
-            "unite": "analyse biologique",
-            "conforme": true,
-            "note": "Eau miraculeuse analysée potable selon mairie"
-          }
+          "nitrates": 15.2,
+          "nitrates_limite": 50,
+          "bacteries": 0,
+          "bacteries_limite": 0,
+          "ph": 7.2,
+          "ph_min": 6.5,
+          "ph_max": 9.0,
+          "conductivite": 380,
+          "turbidite": 0.6,
+          "potabilite_generale": "conforme"
         },
-        "certificat_url": "documents/analyses/fontpeyrine_mairie_tursac.pdf"
+        "note": "Eau miraculeuse analysée potable selon mairie - Données à actualiser"
       },
       "caracteristiques": {
         "frequentation": "patrimoniale et religieuse",
@@ -224,12 +286,17 @@
         "documents/images/sources/fontpeyrine-exvoto.webp",
         "documents/images/sources/fontpeyrine-source.webp"
       ],
-      "qr_code_url": "documents/qr-codes/fontpeyrine-tursac.png",
-      "installation_qr": "2025-09-01",
-      "derniere_visite_terrain": "2025-08-18",
       "usage_reel": "Pèlerinage annuel + tourisme patrimoine + usage traditionnel",
       "avantage": "Déjà analysée potable, cadre historique exceptionnel",
-      "legende": "Bœuf gratta sol, statue Vierge découverte dans source jaillissante"
+      "legende": "Bœuf gratta sol, statue Vierge découverte dans source jaillissante",
+      "historique_analyses": [
+        {
+          "date": "2020-01-01",
+          "statut": "conforme",
+          "nitrates": 15.2,
+          "bacteries": 0
+        }
+      ]
     },
 
     "saint_sicaire_brantome": {
@@ -248,7 +315,7 @@
         "date": "2025-09-25",
         "statut": "attente", 
         "laboratoire": "ianesco",
-        "numero_analyse": "A_PROGRAMMER",
+        "numero_analyse": "EN_ATTENTE",
         "note": "Première analyse prévue septembre 2025 - Sources Vivantes"
       },
       "caracteristiques": {
@@ -292,9 +359,6 @@
         "documents/images/sources/saint-sicaire-grotte.webp",
         "documents/images/sources/saint-sicaire-abbaye.webp"
       ],
-      "qr_code_url": "documents/qr-codes/saint-sicaire-brantome.png",
-      "installation_qr": "2025-09-10",
-      "derniere_visite_terrain": "2025-08-22", 
       "usage_reel": "Intégré visite touristique abbaye, centaines visiteurs quotidiens été",
       "avantage": "Vitrine touristique, accessibilité parfaite, cadre patrimonial unique",
       "vertus_attribuees": "Guérison enfants malades, fertilité femmes"
@@ -336,54 +400,25 @@
       "ammonium",
       "nitrites"
     ],
-    "parametres_optionnels": [
-      "metaux_lourds",
-      "pesticides", 
-      "hydrocarbures"
-    ],
     "cout_analyse_standard": 280,
-    "cout_analyse_complete": 450,
     "delai_resultats": "7-10 jours ouvrés"
   },
 
   "statistiques_reelles": {
     "par_statut": {
-      "conforme": 1,
+      "conforme": 2,
       "non_conforme": 0,
       "attente": 3
     },
     "par_type_source": {
-      "resurgence_naturelle": 1,
+      "resurgence_naturelle": 2,
       "source_miraculeuse": 2,
       "source_abbatiale": 1
     },
     "taux_frequentation": {
       "tres_forte": 2,
-      "forte": 1,
+      "forte": 2,
       "patrimoniale": 1
-    },
-    "couverture_mediatique": {
-      "france_bleu": 3,
-      "france_3": 1,
-      "blogs_specialises": 1,
-      "offices_tourisme": 1
-    }
-  },
-
-  "planning_deploiement": {
-    "septembre_2025": {
-      "action": "Analyses laboratoires",
-      "sources": ["boulou_tursac", "auvergnat_campsegret", "saint_sicaire_brantome"],
-      "laboratoire": "Répartition Eurofins/CARSO/IANESCO"
-    },
-    "octobre_2025": {
-      "action": "Installation QR codes + publication résultats",
-      "sources": "Toutes sources analysées",
-      "communication": "Lancement médiatique"
-    },
-    "novembre_2025": {
-      "action": "Bilan phase pilote",
-      "objectif": "Retours usagers + impact médiatique"
     }
   }
 }
