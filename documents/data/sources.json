@@ -1,11 +1,11 @@
 {
   "metadata": {
     "derniere_maj": "2025-08-28T15:00:00Z",
-    "version": "1.1.0",
-    "total_sources": 5,
+    "version": "1.2.0",
+    "total_sources": 6,
     "sources_conformes": 2,
     "sources_non_conformes": 0,
-    "sources_en_attente": 3,
+    "sources_en_attente": 4,
     "region_pilote": "Dordogne",
     "contact": "contact@sources-vivantes.fr",
     "note_importante": "Données pour présentation - Phase pilote 2025"
@@ -362,6 +362,122 @@
       "usage_reel": "Intégré visite touristique abbaye, centaines visiteurs quotidiens été",
       "avantage": "Vitrine touristique, accessibilité parfaite, cadre patrimonial unique",
       "vertus_attribuees": "Guérison enfants malades, fertilité femmes"
+    },
+
+    "notre_dame_laveyssiere": {
+      "id": "notre_dame_laveyssiere",
+      "nom": "Fontaine Notre-Dame de la Nativité", 
+      "commune": "Laveyssière (Eyraud-Crempse-Maurens)",
+      "departement": "Dordogne",
+      "code_postal": "24130",
+      "region": "Nouvelle-Aquitaine",
+      "coordonnees": {
+        "lat": 44.9417,
+        "lng": 0.442,
+        "altitude": 71
+      },
+      "derniere_analyse": {
+        "date": "2025-10-01",
+        "statut": "attente", 
+        "laboratoire": "eurofins",
+        "numero_analyse": "EN_ATTENTE",
+        "note": "Première analyse prévue octobre 2025 - Sources Vivantes"
+      },
+      "caracteristiques": {
+        "frequentation": "pèlerinage historique majeur",
+        "visiteurs_par_jour": "pèlerins + tourisme patrimonial intense",
+        "acces": {
+          "parking": "Centre bourg Laveyssière",
+          "distance_parking": "50m", 
+          "duree_marche": "2 min",
+          "difficulte": "très facile",
+          "pmr_accessible": true
+        },
+        "source": {
+          "type": "source miraculeuse dans édicule de pierre",
+          "debit": "constant",
+          "temperature": "fraîche",
+          "profondeur": "vasque remplie d'eau limpide",
+          "amenagement": "Vierge en fonte au-dessus"
+        }
+      },
+      "description": "Le 'petit Lourdes du Périgord'. Source miraculeuse majeure avec pèlerinages séculaires. Édifice construit au-dessus de la source avec vasque d'eau limpide. Statue Vierge en majesté inaugurée 1991. Pèlerinage annuel maintenu le 8 septembre avec témoignages de guérisons documentés.",
+      "contexte_historique_exceptionnel": {
+        "moyen_age": "Lieu de pèlerinage depuis le Moyen Âge",
+        "apogee_1850": "Jusqu'à 6000 pèlerins (Dordogne, Gironde, Lot-et-Garonne)",
+        "evolution_culte": "Vierge mère → Vierge enfant (Sanctissima Bambina) au XXe",
+        "eglise_associee": "Notre-Dame de la Nativité (XIIIe-XVIIIe siècles)",
+        "pelerinage_actuel": "8 septembre annuel maintenu"
+      },
+      "temoignages_guerisons_documentes": [
+        {
+          "nom": "Paul Roucou",
+          "date_guerison": "1921-09-09",
+          "age": "15 mois", 
+          "pathologie": "jambe folle paralysée",
+          "temoignage_public": "1999 et 2008 devant pèlerins"
+        },
+        {
+          "nom": "Christophe Alavoine", 
+          "date": "1998",
+          "pathologie": "staphylocoque mains (Guerre du Golfe)",
+          "temoignage_ecrit": "7 septembre 1998"
+        },
+        {
+          "nom": "Josette Brousseau",
+          "dates": "2002-2003",
+          "pathologie": "paralysie colonne + polyarthrite rhumatoïde",
+          "guerison": "totale en 2003"
+        }
+      ],
+      "vertus_attribuees": [
+        "Guérison malades (épilepsie, sclérose, rhumatismes)", 
+        "Fertilité femmes stériles",
+        "Aide célibataires trouver conjoint",
+        "Guérisons diverses documentées",
+        "Conversions religieuses"
+      ],
+      "sources_medias": [
+        {
+          "media": "Sud Ouest",
+          "titre": "Reportage dans le petit Lourdes du Périgord", 
+          "url": "https://www.sudouest.fr/culture/religion/dordogne-reportage-dans-le-petit-lourdes-du-perigord-5778849.php"
+        },
+        {
+          "source": "Office de Tourisme Dordogne Périgord",
+          "url": "https://www.dordogneperigordtourisme.fr/decouverte/contes-et-legendes-du-perigord/pelerinage-et-fontaine-miraculeuse-a-laveyssiere/",
+          "citation": "Une vache qui recouvre la vue, des femmes qui deviennent fertiles"
+        },
+        {
+          "source": "Encyclopédie La lumière de Dieu",
+          "url": "https://lalumierededieu.blogspot.com/2016/05/laveyssiere-source-notre-dame-de-la.html",
+          "citation": "À 12 km de Bergerac, pèlerinages pour guérisons"
+        },
+        {
+          "source": "Tourisme Isle Périgord",
+          "url": "https://tourisme-isleperigord.com/visiter/laveyssiere/",
+          "citation": "Lieu de pèlerinage très fréquenté depuis le Moyen Âge"
+        }
+      ],
+      "photos": [
+        "documents/images/sources/laveyssiere-fontaine.webp",
+        "documents/images/sources/laveyssiere-eglise.webp",
+        "documents/images/sources/laveyssiere-vierge.webp"
+      ],
+      "usage_reel": "Pèlerinage annuel 8 septembre, tourisme religieux, usage traditionnel local",
+      "avantage": "Cadre historique majeur, accessibilité parfaite, témoignages documentés",
+      "surnom": "Le petit Lourdes du Périgord",
+      "legende": "Vache aveugle recouvre vue en s'abreuvant, gratte sol et fait apparaître statue Vierge",
+      "patrimoine_associe": {
+        "eglise": "Notre-Dame de la Nativité (XIIIe-XVIIIe)",
+        "statue_1991": "Vierge en majesté inaugurée par vicaire épiscopal Roger Baret",
+        "geocaching": "Parcours Terra Aventura 'Retour aux sources' 1km"
+      },
+      "frequentation_historique": {
+        "apogee": "6000 pèlerins annuels vers 1850",
+        "origine_geographique": "Dordogne + Gironde + Lot-et-Garonne", 
+        "periode": "Octave de la Nativité de Marie (8 septembre)"
+      }
     }
   },
 
@@ -408,17 +524,17 @@
     "par_statut": {
       "conforme": 2,
       "non_conforme": 0,
-      "attente": 3
+      "attente": 4
     },
     "par_type_source": {
       "resurgence_naturelle": 2,
-      "source_miraculeuse": 2,
+      "source_miraculeuse": 3,
       "source_abbatiale": 1
     },
     "taux_frequentation": {
       "tres_forte": 2,
       "forte": 2,
-      "patrimoniale": 1
+      "patrimoniale": 2
     }
   }
 }
