@@ -441,20 +441,24 @@
         {
           "media": "Sud Ouest",
           "titre": "Reportage dans le petit Lourdes du Périgord", 
-          "url": "https://www.sudouest.fr/culture/religion/dordogne-reportage-dans-le-petit-lourdes-du-perigord-5778849.php"
+          "url": "https://www.sudouest.fr/culture/religion/dordogne-reportage-dans-le-petit-lourdes-du-perigord-5778849.php",
+          "note": "Article bloqué - date non accessible"
         },
         {
           "source": "Office de Tourisme Dordogne Périgord",
           "url": "https://www.dordogneperigordtourisme.fr/decouverte/contes-et-legendes-du-perigord/pelerinage-et-fontaine-miraculeuse-a-laveyssiere/",
-          "citation": "Une vache qui recouvre la vue, des femmes qui deviennent fertiles"
+          "citation": "Une vache qui recouvre la vue, des femmes qui deviennent fertiles",
+          "note": "Page institutionnelle - non datée"
         },
         {
           "source": "Encyclopédie La lumière de Dieu",
+          "date": "2016-05-01",
           "url": "https://lalumierededieu.blogspot.com/2016/05/laveyssiere-source-notre-dame-de-la.html",
           "citation": "À 12 km de Bergerac, pèlerinages pour guérisons"
         },
         {
           "source": "Tourisme Isle Périgord",
+          "date": "2022-11-25",
           "url": "https://tourisme-isleperigord.com/visiter/laveyssiere/",
           "citation": "Lieu de pèlerinage très fréquenté depuis le Moyen Âge"
         }
