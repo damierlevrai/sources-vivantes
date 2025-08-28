@@ -11,6 +11,7 @@ let map = null;
 let markers = [];
 let currentModal = null;
 let sourcesData = {}; // Sera chargé depuis JSON
+let isMapLoaded = false; // Nouvelle variable pour gérer l'état de la carte
 
 /* ============================================
    2. INITIALISATION GÉNÉRALE
@@ -18,16 +19,16 @@ let sourcesData = {}; // Sera chargé depuis JSON
 
 function initModalSystem() {
     console.log('🌊 Initialisation Sources Vivantes Modal System');
-    
+
     // Créer le conteneur modal s'il n'existe pas
     if (!document.getElementById('modal-overlay')) {
         createModalContainer();
     }
-    
+
     // Écouter les clics de fermeture
     document.addEventListener('click', handleModalClose);
     document.addEventListener('keydown', handleKeyDown);
-    
+
     console.log('✅ Modal system initialisé');
 }
 
@@ -40,8 +41,7 @@ function createModalContainer() {
                     <button class="modal-close" aria-label="Fermer">×</button>
                 </div>
                 <div class="modal-body" id="modal-content">
-                    <!-- Contenu dynamique -->
-                </div>
+                    </div>
             </div>
         </div>
     `;
@@ -56,20 +56,20 @@ async function loadSourcesFromJSON() {
     try {
         console.log('🔄 Chargement des données sources depuis JSON...');
         const response = await fetch('documents/data/sources.json');
-        
+
         if (response.ok) {
             const data = await response.json();
             sourcesData = data.sources || {};
-            
+
             console.log('✅ Données sources chargées:', Object.keys(sourcesData).length, 'sources');
             console.log('📊 Sources:', Object.keys(sourcesData));
-            
+
             // Mettre à jour l'affichage
             updateHeroStats();
-            if (map) {
+            if (isMapLoaded) { // Vérifier si la carte est déjà chargée
                 addSourceMarkers();
             }
-            
+
             return true;
         } else {
             throw new Error(`Erreur HTTP: ${response.status}`);
@@ -77,7 +77,7 @@ async function loadSourcesFromJSON() {
     } catch (error) {
         console.warn('⚠️ Impossible de charger sources.json:', error.message);
         console.log('📁 Utilisation des données par défaut (mode démo)');
-        
+
         // Données de démonstration minimales si JSON indisponible
         sourcesData = {
             "demo": {
@@ -110,8 +110,11 @@ async function loadSourcesFromJSON() {
                 description: "Source de démonstration pour présentation du système Sources Vivantes."
             }
         };
-        
+
         updateHeroStats();
+        if (isMapLoaded) {
+            addSourceMarkers();
+        }
         return false;
     }
 }
@@ -127,33 +130,33 @@ function openSource(sourceId) {
         showNotification('Source non trouvée', 'error');
         return;
     }
-    
+
     console.log(`🗂️ Ouverture source: ${source.nom}`);
-    
+
     // Mettre à jour l'URL sans recharger
     const newUrl = new URL(window.location);
     newUrl.searchParams.set('source', sourceId);
     history.pushState({ modal: sourceId }, '', newUrl.toString());
-    
+
     // Générer le contenu de la modal
     const modalContent = generateSourceModalContent(source);
-    
+
     // Afficher la modal
     const overlay = document.getElementById('modal-overlay');
     const title = overlay.querySelector('.modal-title');
     const content = overlay.querySelector('.modal-body');
-    
+
     title.textContent = `${source.nom} - ${source.commune}`;
     content.innerHTML = modalContent;
-    
+
     // Activer la modal
     overlay.classList.add('active');
     currentModal = sourceId;
-    
+
     // Focus pour l'accessibilité
     const closeButton = overlay.querySelector('.modal-close');
     if (closeButton) closeButton.focus();
-    
+
     // Désactiver le scroll du body
     document.body.style.overflow = 'hidden';
 }
@@ -161,26 +164,24 @@ function openSource(sourceId) {
 function generateSourceModalContent(source) {
     const analyse = source.derniere_analyse;
     const statut = analyse.statut;
-    
+
     // Icône et couleur selon le statut
     const statusConfig = {
         'conforme': { icon: '✅', color: '#10b981', label: 'Eau conforme' },
         'non-conforme': { icon: '❌', color: '#ef4444', label: 'Eau non conforme' },
         'attente': { icon: '🔄', color: '#f59e0b', label: 'Analyse en cours' }
     };
-    
+
     const config = statusConfig[statut] || statusConfig['attente'];
-    
+
     // Adapter les champs selon la structure JSON réelle
     const caracteristiques = source.caracteristiques || {};
     const acces = caracteristiques.acces || {};
-    
+
     return `
         <div class="source-modal-content">
-            <!-- Photos de la source -->
             ${source.photos ? generatePhotosSection(source.photos, source.nom) : ''}
 
-            <!-- Statut principal -->
             <div class="source-status" style="background: ${config.color}20; border-left: 4px solid ${config.color}; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
                 <div style="display: flex; align-items: center; gap: 1rem;">
                     <span style="font-size: 2rem;">${config.icon}</span>
@@ -193,7 +194,6 @@ function generateSourceModalContent(source) {
                 </div>
             </div>
 
-            <!-- Informations générales -->
             <div class="source-info-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
                 <div class="info-card">
                     <h4 style="color: #0891b2; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
@@ -218,25 +218,20 @@ function generateSourceModalContent(source) {
             ${analyse.problemes ? generateProblemsSection(analyse.problemes) : ''}
             ${source.recommandations ? generateRecommendationsSection(source.recommandations) : ''}
 
-            <!-- Sources médiatiques -->
             ${source.sources_medias ? generateMediaSection(source.sources_medias) : ''}
 
             ${source.historique_analyses ? generateHistorySection(source.historique_analyses) : ''}
 
-            <!-- Description -->
             <div class="source-description" style="margin: 2rem 0; padding: 1.5rem; background: rgba(8, 145, 178, 0.05); border-radius: 12px;">
                 <h4 style="color: #0891b2; margin-bottom: 1rem;">💧 À propos de cette source</h4>
                 <p>${source.description}</p>
                 ${source.legende_locale ? `<p style="margin-top: 1rem; font-style: italic; color: #6b7280;"><strong>Légende :</strong> ${source.legende_locale}</p>` : ''}
             </div>
 
-            <!-- Contexte historique spécial -->
             ${source.historique_exceptionnel ? generateHistoricSection(source.historique_exceptionnel) : ''}
 
-            <!-- Informations pratiques -->
             ${generatePracticalInfoSection(source)}
 
-            <!-- Actions -->
             <div class="source-actions" style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
                 <button onclick="shareSource('${source.id}')" class="btn btn-secondary">
                     <span>🔤</span> Partager
@@ -249,7 +244,6 @@ function generateSourceModalContent(source) {
                 </button>
             </div>
 
-            <!-- Avertissement légal -->
             <div class="legal-notice" style="margin-top: 2rem; padding: 1rem; background: rgba(107, 114, 128, 0.1); border-radius: 8px; font-size: 0.9rem; color: #6b7280; text-align: center;">
                 <strong>⚖️ Information uniquement</strong><br>
                 Ces données sont fournies à titre informatif. Sources Vivantes ne délivre pas d'autorisation de consommation. 
@@ -261,7 +255,7 @@ function generateSourceModalContent(source) {
 
 function generatePhotosSection(photos, sourceName) {
     if (!photos || photos.length === 0) return '';
-    
+
     return `
         <div class="photos-section" style="margin-bottom: 2rem;">
             <div class="photos-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
@@ -281,7 +275,7 @@ function generatePhotosSection(photos, sourceName) {
 
 function generateMediaSection(sourcesMedias) {
     if (!sourcesMedias || sourcesMedias.length === 0) return '';
-    
+
     return `
         <div class="media-section" style="margin: 2rem 0; padding: 1.5rem; background: rgba(59, 130, 246, 0.05); border-radius: 12px;">
             <h4 style="color: #3b82f6; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
@@ -323,7 +317,7 @@ function generateMediaSection(sourcesMedias) {
 
 function generateHistoricSection(historique) {
     if (!historique) return '';
-    
+
     return `
         <div class="historic-section" style="margin: 2rem 0; padding: 1.5rem; background: rgba(156, 163, 175, 0.1); border-radius: 12px;">
             <h4 style="color: #6b7280; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
@@ -349,7 +343,7 @@ function generatePracticalInfoSection(source) {
     const caracteristiques = source.caracteristiques || {};
     const sourceType = caracteristiques.source || {};
     let sections = [];
-    
+
     // Section caractéristiques de la source
     if (sourceType.type || sourceType.debit || sourceType.temperature) {
         sections.push(`
@@ -365,7 +359,7 @@ function generatePracticalInfoSection(source) {
             </div>
         `);
     }
-    
+
     // Section usage réel
     if (source.usage_reel) {
         sections.push(`
@@ -379,7 +373,7 @@ function generatePracticalInfoSection(source) {
             </div>
         `);
     }
-    
+
     // Section avantage/problématique
     if (source.avantage || source.problematique) {
         sections.push(`
@@ -399,9 +393,9 @@ function generatePracticalInfoSection(source) {
             </div>
         `);
     }
-    
+
     if (sections.length === 0) return '';
-    
+
     return `
         <div class="practical-info" style="margin: 2rem 0;">
             <h4 style="color: #0891b2; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
@@ -420,7 +414,7 @@ function openPhotoModal(photoUrl, sourceName) {
         background: rgba(0,0,0,0.8); z-index: 10000; display: flex;
         align-items: center; justify-content: center; cursor: pointer;
     `;
-    
+
     const img = document.createElement('img');
     img.src = photoUrl;
     img.alt = sourceName;
@@ -428,36 +422,39 @@ function openPhotoModal(photoUrl, sourceName) {
         max-width: 90%; max-height: 90%; border-radius: 12px;
         box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     `;
-    
+
     modal.appendChild(img);
     modal.addEventListener('click', () => modal.remove());
     document.body.appendChild(modal);
 }
+
+// FONCTION MAL PLACÉE DANS LE CODE ORIGINAL, MAINTENANT CORRECTEMENT DÉFINIE
+function generateParametersSection(parametres) {
     if (!parametres) return '';
-    
+
     let paramCards = '';
-    
+
     // Nitrates
     if (parametres.nitrates !== undefined) {
         paramCards += generateParameterCard('Nitrates', parametres.nitrates, parametres.nitrates_limite || 50, 'mg/L');
     }
-    
+
     // Bactéries
     if (parametres.bacteries !== undefined) {
         paramCards += generateParameterCard('Bactéries', parametres.bacteries, parametres.bacteries_limite || 0, 'CFU/100mL');
     }
-    
+
     // pH
     if (parametres.ph !== undefined) {
         const phLimit = `${parametres.ph_min || 6.5}-${parametres.ph_max || 9.0}`;
         paramCards += generateParameterCard('pH', parametres.ph, phLimit, '');
     }
-    
+
     // Conductivité
     if (parametres.conductivite !== undefined) {
         paramCards += generateParameterCard('Conductivité', parametres.conductivite, null, 'µS/cm');
     }
-    
+
     if (paramCards) {
         return `
             <div class="analysis-section" style="margin-bottom: 2rem;">
@@ -470,15 +467,16 @@ function openPhotoModal(photoUrl, sourceName) {
             </div>
         `;
     }
-    
+
     return '';
 }
 
+// FONCTION MAL PLACÉE DANS LE CODE ORIGINAL, MAINTENANT CORRECTEMENT DÉFINIE
 function generateParameterCard(name, value, limit, unit) {
     let statusColor = '#10b981'; // Vert par défaut
     let statusIcon = '✅';
     let statusText = 'Conforme';
-    
+
     // Logique de conformité selon le paramètre
     if (name === 'Nitrates' && limit) {
         if (value > limit) {
@@ -500,7 +498,7 @@ function generateParameterCard(name, value, limit, unit) {
             statusText = 'Hors norme';
         }
     }
-    
+
     return `
         <div class="parameter-card" style="padding: 1rem; background: white; border-radius: 8px; border: 1px solid rgba(8, 145, 178, 0.1); text-align: center;">
             <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">${statusIcon}</div>
@@ -542,7 +540,7 @@ function generateRecommendationsSection(recommendations) {
 
 function generateHistorySection(history) {
     if (!history || history.length === 0) return '';
-    
+
     return `
         <div class="history-section" style="margin: 2rem 0;">
             <h4 style="color: #0891b2; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
@@ -570,10 +568,10 @@ function closeModal() {
     if (overlay) {
         overlay.classList.remove('active');
         currentModal = null;
-        
+
         // Réactiver le scroll du body
         document.body.style.overflow = '';
-        
+
         // Nettoyer l'URL
         const newUrl = new URL(window.location);
         newUrl.searchParams.delete('source');
@@ -587,13 +585,13 @@ function closeModal() {
 
 function initMap() {
     console.log('🗺️ Initialisation Google Maps');
-    
+
     const mapElement = document.getElementById('map');
     if (!mapElement) {
         console.log('❌ Élément carte non trouvé');
         return;
     }
-    
+
     // Initialiser la carte
     map = new google.maps.Map(mapElement, {
         center: SOURCES_CONFIG.map.defaultCenter,
@@ -601,13 +599,14 @@ function initMap() {
         styles: getMapStyles(),
         gestureHandling: 'cooperative'
     });
-    
+    isMapLoaded = true; // Marquer la carte comme chargée
+
     // Ajouter les marqueurs des sources
     addSourceMarkers();
-    
+
     // Initialiser les filtres
     initMapFilters();
-    
+
     console.log('✅ Google Maps initialisé');
 }
 
@@ -630,7 +629,7 @@ function addSourceMarkers() {
     // Supprimer les marqueurs existants
     markers.forEach(marker => marker.setMap(null));
     markers = [];
-    
+
     Object.values(sourcesData).forEach(source => {
         const marker = createSourceMarker(source);
         markers.push(marker);
@@ -643,9 +642,9 @@ function createSourceMarker(source) {
         'non-conforme': { color: '#ef4444', icon: '❌' },
         'attente': { color: '#f59e0b', icon: '🔄' }
     };
-    
+
     const config = statusConfig[source.derniere_analyse.statut] || statusConfig['attente'];
-    
+
     const markerIcon = {
         path: google.maps.SymbolPath.CIRCLE,
         scale: 8,
@@ -654,7 +653,7 @@ function createSourceMarker(source) {
         strokeColor: '#ffffff',
         strokeWeight: 2
     };
-    
+
     const marker = new google.maps.Marker({
         position: source.coordonnees,
         map: map,
@@ -662,7 +661,7 @@ function createSourceMarker(source) {
         icon: markerIcon,
         sourceId: source.id
     });
-    
+
     const infoContent = `
         <div style="max-width: 300px; font-family: -apple-system, sans-serif;">
             <h3 style="margin: 0 0 0.5rem; color: #0891b2; font-size: 1.1rem;">${source.nom}</h3>
@@ -671,8 +670,8 @@ function createSourceMarker(source) {
             <div style="display: flex; align-items: center; gap: 0.5rem; margin: 0.8rem 0; padding: 0.5rem; background: ${config.color}20; border-radius: 6px;">
                 <span style="font-size: 1.2rem;">${config.icon}</span>
                 <span style="font-weight: 600; color: ${config.color};">
-                    ${source.derniere_analyse.statut === 'conforme' ? 'Conforme' : 
-                      source.derniere_analyse.statut === 'non-conforme' ? 'Non conforme' : 'En attente'}
+                    ${source.derniere_analyse.statut === 'conforme' ? 'Conforme' :
+            source.derniere_analyse.statut === 'non-conforme' ? 'Non conforme' : 'En attente'}
                 </span>
             </div>
             
@@ -688,20 +687,20 @@ function createSourceMarker(source) {
             </div>
         </div>
     `;
-    
+
     const infoWindow = new google.maps.InfoWindow({
         content: infoContent
     });
-    
+
     marker.addListener('click', () => {
         markers.forEach(m => {
             if (m.infoWindow) m.infoWindow.close();
         });
         infoWindow.open(map, marker);
     });
-    
+
     marker.infoWindow = infoWindow;
-    
+
     return marker;
 }
 
@@ -712,10 +711,10 @@ function createSourceMarker(source) {
 function shareSource(sourceId) {
     const source = sourcesData[sourceId];
     if (!source) return;
-    
+
     const url = `${SOURCES_CONFIG.baseUrl}/?source=${sourceId}`;
     const message = `🌊 Découvrez les analyses de la ${source.nom} à ${source.commune} sur Sources Vivantes : ${url}`;
-    
+
     if (navigator.share) {
         navigator.share({
             title: `${source.nom} - Sources Vivantes`,
@@ -739,18 +738,18 @@ function shareSource(sourceId) {
 
 function showOnMap(sourceId) {
     closeModal();
-    
+
     const mapSection = document.getElementById('carte');
     if (mapSection) {
         mapSection.scrollIntoView({ behavior: 'smooth' });
     }
-    
+
     setTimeout(() => {
         const source = sourcesData[sourceId];
         if (source && map) {
             map.setCenter(source.coordonnees);
             map.setZoom(15);
-            
+
             const marker = markers.find(m => m.sourceId === sourceId);
             if (marker && marker.infoWindow) {
                 marker.infoWindow.open(map, marker);
@@ -762,7 +761,7 @@ function showOnMap(sourceId) {
 function reportProblem(sourceId) {
     const source = sourcesData[sourceId];
     if (!source) return;
-    
+
     const subject = `Signalement - ${source.nom} (${source.commune})`;
     const body = `Bonjour,
 
@@ -809,7 +808,7 @@ function initMapFilters() {
         'filter-non-conforme': 'non-conforme',
         'filter-attente': 'attente'
     };
-    
+
     Object.entries(filters).forEach(([filterId, status]) => {
         const checkbox = document.getElementById(filterId);
         if (checkbox) {
@@ -824,18 +823,18 @@ function filterMarkers() {
     const showConforme = document.getElementById('filter-conforme')?.checked ?? true;
     const showNonConforme = document.getElementById('filter-non-conforme')?.checked ?? true;
     const showAttente = document.getElementById('filter-attente')?.checked ?? true;
-    
+
     markers.forEach(marker => {
         const source = sourcesData[marker.sourceId];
         if (!source) return;
-        
+
         const status = source.derniere_analyse.statut;
         let shouldShow = false;
-        
+
         if (status === 'conforme' && showConforme) shouldShow = true;
         if (status === 'non-conforme' && showNonConforme) shouldShow = true;
         if (status === 'attente' && showAttente) shouldShow = true;
-        
+
         marker.setVisible(shouldShow);
     });
 }
@@ -845,17 +844,17 @@ function locateUser() {
         showNotification('Géolocalisation non supportée par votre navigateur', 'error');
         return;
     }
-    
+
     navigator.geolocation.getCurrentPosition(
         (position) => {
             const userLocation = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            
+
             map.setCenter(userLocation);
             map.setZoom(12);
-            
+
             new google.maps.Marker({
                 position: userLocation,
                 map: map,
@@ -869,7 +868,7 @@ function locateUser() {
                     strokeWeight: 2
                 }
             });
-            
+
             showNotification('Position trouvée !', 'success');
         },
         (error) => {
@@ -900,17 +899,17 @@ function formatDate(dateString) {
 function updateHeroStats() {
     const totalSources = Object.keys(sourcesData).length;
     const conformes = Object.values(sourcesData).filter(s => s.derniere_analyse.statut === 'conforme').length;
-    
+
     const totalElement = document.getElementById('total-sources');
     const conformesElement = document.getElementById('conformes');
-    
+
     if (totalElement) totalElement.textContent = totalSources;
     if (conformesElement) conformesElement.textContent = conformes;
 }
 
 function showNotification(message, type = 'info') {
     console.log(`🔢 ${type.toUpperCase()}: ${message}`);
-    
+
     if (typeof window.showNotification === 'function') {
         window.showNotification(message, type);
     }
