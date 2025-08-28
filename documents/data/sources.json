@@ -1,30 +1,34 @@
 {
   "metadata": {
-    "derniere_maj": "2025-08-25T10:30:00Z",
-    "version": "1.0.0",
-    "total_sources": 5,
-    "sources_conformes": 3,
-    "sources_non_conformes": 1,
-    "sources_en_attente": 1,
+    "derniere_maj": "2025-08-28T15:00:00Z",
+    "version": "1.1.0",
+    "total_sources": 4,
+    "sources_conformes": 1,
+    "sources_non_conformes": 0,
+    "sources_en_attente": 3,
     "region_pilote": "Dordogne",
-    "contact": "contact@sources-vivantes.fr"
+    "contact": "contact@sources-vivantes.fr",
+    "note_importante": "Données réelles basées sur sources médiatiques et terrain"
   },
   
   "laboratoires": {
     "eurofins": {
       "nom": "Eurofins Environnement",
       "accreditation": "COFRAC",
-      "specialites": ["bactériologie", "chimie"]
+      "specialites": ["bactériologie", "chimie"],
+      "contact": "https://www.eurofins.fr"
     },
     "carso": {
       "nom": "CARSO Laboratoires",
       "accreditation": "COFRAC", 
-      "specialites": ["hydrogéologie", "métaux lourds"]
+      "specialites": ["hydrogéologie", "métaux lourds"],
+      "contact": "https://www.carso.fr"
     },
     "ianesco": {
       "nom": "IANESCO",
       "accreditation": "COFRAC",
-      "specialites": ["métaux lourds", "pesticides"]
+      "specialites": ["métaux lourds", "pesticides"],
+      "contact": "https://www.ianesco.fr"
     }
   },
   
@@ -42,450 +46,258 @@
         "altitude": 145
       },
       "derniere_analyse": {
-        "date": "2025-06-15",
-        "statut": "conforme",
-        "laboratoire": "carso",
-        "numero_analyse": "CAR-2025-0615-BT",
-        "parametres": {
-          "nitrates": {
-            "valeur": 12.5,
-            "unite": "mg/L",
-            "limite": 50,
-            "conforme": true
-          },
-          "bacteries_coliformes": {
-            "valeur": 0,
-            "unite": "CFU/100mL",
-            "limite": 0,
-            "conforme": true
-          },
-          "ph": {
-            "valeur": 7.1,
-            "unite": "",
-            "limite_min": 6.5,
-            "limite_max": 9.0,
-            "conforme": true
-          },
-          "conductivite": {
-            "valeur": 380,
-            "unite": "µS/cm",
-            "conforme": true
-          },
-          "turbidite": {
-            "valeur": 0.5,
-            "unite": "NTU",
-            "limite": 4,
-            "conforme": true
-          },
-          "ammonium": {
-            "valeur": 0.1,
-            "unite": "mg/L",
-            "limite": 0.5,
-            "conforme": true
-          },
-          "nitrites": {
-            "valeur": 0.02,
-            "unite": "mg/L", 
-            "limite": 0.5,
-            "conforme": true
-          }
-        },
-        "certificat_url": "documents/analyses/boulou_2025_06_15.pdf"
+        "date": "2025-09-15",
+        "statut": "attente",
+        "laboratoire": "eurofins",
+        "numero_analyse": "A_PROGRAMMER",
+        "note": "Première analyse prévue septembre 2025 - Sources Vivantes"
       },
       "caracteristiques": {
         "frequentation": "très forte",
-        "visiteurs_par_jour": "40-60",
+        "visiteurs_par_jour": "plusieurs dizaines",
         "acces": {
-          "parking": "Gratuit, 50 places",
-          "distance_parking": "100m",
-          "duree_marche": "2 min",
-          "difficulte": "facile",
+          "parking": "Bord de route accessible",
+          "distance_parking": "0m",
+          "duree_marche": "accès immédiat",
+          "difficulte": "très facile",
           "pmr_accessible": true
         },
         "source": {
-          "type": "résurgence",
-          "debit": "constant",
-          "temperature": "12-14°C",
+          "type": "résurgence naturelle",
+          "debit": "constant selon témoignages",
+          "temperature": "fraîche toute année",
           "profondeur": "source naturelle"
         }
       },
-      "description": "Source historique très appréciée des habitants et touristes. Mentionnée dans les archives locales depuis le 18ème siècle. Point de rassemblement traditionnel des randonneurs de la vallée de la Vézère.",
+      "description": "Source historique très populaire au lieu-dit Le Boulou. Mentionnée dans les archives du 18e siècle. Point de rassemblement traditionnel des randonneurs de la vallée de la Vézère. Usage quotidien massif documenté.",
+      "sources_medias": [
+        {
+          "media": "France Bleu Périgord",
+          "date": "2022-12-16",
+          "url": "https://www.francebleu.fr/emissions/au-fil-de-l-eau-en-dordogne/la-source-de-boulou-a-tursac-8340666",
+          "citation": "Beaucoup de gens viennent d'ailleurs chercher cette eau"
+        }
+      ],
       "photos": [
         "documents/images/sources/boulou-tursac-1.webp",
-        "documents/images/sources/boulou-tursac-2.webp",
-        "documents/images/sources/boulou-tursac-panneau.webp"
+        "documents/images/sources/boulou-tursac-route.webp"
       ],
       "qr_code_url": "documents/qr-codes/boulou-tursac.png",
-      "historique_analyses": [
-        {
-          "date": "2024-06-10",
-          "statut": "conforme",
-          "laboratoire": "carso",
-          "nitrates": 11.8,
-          "bacteries_coliformes": 0,
-          "ph": 7.2
-        },
-        {
-          "date": "2023-07-05",
-          "statut": "conforme", 
-          "laboratoire": "eurofins",
-          "nitrates": 13.2,
-          "bacteries_coliformes": 0,
-          "ph": 7.0
-        }
-      ],
-      "installation_qr": "2025-03-15",
-      "derniere_visite_terrain": "2025-06-10"
+      "installation_qr": "2025-09-01",
+      "derniere_visite_terrain": "2025-08-15",
+      "usage_reel": "Plusieurs dizaines de visiteurs quotidiens, eau réputée de très grande qualité",
+      "problematique": "Aucune analyse officielle malgré usage massif"
     },
 
-    "fontaine_saint_martial": {
-      "id": "fontaine_saint_martial",
-      "nom": "Fontaine Saint-Martial",
-      "commune": "Saint-Martial-de-Nabirat",
-      "departement": "Dordogne",
-      "code_postal": "24250",
-      "region": "Nouvelle-Aquitaine",
-      "coordonnees": {
-        "lat": 44.8234,
-        "lng": 1.2156,
-        "altitude": 180
-      },
-      "derniere_analyse": {
-        "date": "2025-07-02",
-        "statut": "non-conforme",
-        "laboratoire": "eurofins",
-        "numero_analyse": "EUR-2025-0702-SM",
-        "parametres": {
-          "nitrates": {
-            "valeur": 62.0,
-            "unite": "mg/L",
-            "limite": 50,
-            "conforme": false,
-            "depassement": 24.0
-          },
-          "bacteries_coliformes": {
-            "valeur": 15,
-            "unite": "CFU/100mL",
-            "limite": 0,
-            "conforme": false
-          },
-          "ph": {
-            "valeur": 6.8,
-            "unite": "",
-            "limite_min": 6.5,
-            "limite_max": 9.0,
-            "conforme": true
-          },
-          "conductivite": {
-            "valeur": 580,
-            "unite": "µS/cm",
-            "conforme": true
-          },
-          "turbidite": {
-            "valeur": 2.1,
-            "unite": "NTU",
-            "limite": 4,
-            "conforme": true
-          },
-          "ammonium": {
-            "valeur": 0.3,
-            "unite": "mg/L",
-            "limite": 0.5,
-            "conforme": true
-          }
-        },
-        "problemes_identifies": [
-          "Taux de nitrates dépassant la limite (62 mg/L > 50 mg/L)",
-          "Présence de bactéries coliformes (15 CFU/100mL)",
-          "Possible contamination agricole en amont"
-        ],
-        "certificat_url": "documents/analyses/saint_martial_2025_07_02.pdf"
-      },
-      "caracteristiques": {
-        "frequentation": "modérée",
-        "visiteurs_par_jour": "10-15",
-        "acces": {
-          "parking": "Petit parking de village",
-          "distance_parking": "800m",
-          "duree_marche": "15 min",
-          "difficulte": "moyen",
-          "pmr_accessible": false
-        },
-        "source": {
-          "type": "fontaine villageoise",
-          "debit": "variable selon saison",
-          "temperature": "10-16°C",
-          "profondeur": "puits traditionnel"
-        }
-      },
-      "description": "Ancienne fontaine du village, traditionnellement utilisée par les habitants. Nécessite actuellement une surveillance renforcée en raison des résultats d'analyse.",
-      "photos": [
-        "documents/images/sources/saint-martial-1.webp",
-        "documents/images/sources/saint-martial-panneau.webp"
-      ],
-      "qr_code_url": "documents/qr-codes/saint-martial.png",
-      "recommandations_actuelles": [
-        "❌ Éviter la consommation directe",
-        "🔥 Faire bouillir l'eau avant tout usage",
-        "📅 Nouvelle analyse prévue en septembre 2025",
-        "📞 Contacter Sources Vivantes en cas d'évolution"
-      ],
-      "mesures_prises": [
-        "Signalement aux autorités sanitaires locales",
-        "Enquête pollution en cours avec la mairie",
-        "Panneau d'avertissement renforcé"
-      ],
-      "historique_analyses": [
-        {
-          "date": "2024-07-05",
-          "statut": "conforme",
-          "laboratoire": "eurofins", 
-          "nitrates": 45.2,
-          "bacteries_coliformes": 0,
-          "ph": 7.0
-        }
-      ],
-      "installation_qr": "2025-04-20",
-      "derniere_visite_terrain": "2025-07-08"
-    },
-
-    "source_claire_domme": {
-      "id": "source_claire_domme",
-      "nom": "Source Claire",
-      "commune": "Domme",
+    "auvergnat_campsegret": {
+      "id": "auvergnat_campsegret",
+      "nom": "Fontaine de l'Auvergnat",
+      "commune": "Campsegret",
       "departement": "Dordogne", 
-      "code_postal": "24250",
+      "code_postal": "24140",
       "region": "Nouvelle-Aquitaine",
       "coordonnees": {
-        "lat": 44.8013,
-        "lng": 1.2134,
-        "altitude": 210
+        "lat": 45.0234,
+        "lng": 0.8456,
+        "altitude": 120
       },
       "derniere_analyse": {
-        "date": "2025-05-28",
-        "statut": "conforme",
-        "laboratoire": "ianesco",
-        "numero_analyse": "IAN-2025-0528-DC",
-        "parametres": {
-          "nitrates": {
-            "valeur": 8.7,
-            "unite": "mg/L",
-            "limite": 50,
-            "conforme": true
-          },
-          "bacteries_coliformes": {
-            "valeur": 0,
-            "unite": "CFU/100mL",
-            "limite": 0,
-            "conforme": true
-          },
-          "ph": {
-            "valeur": 7.6,
-            "unite": "",
-            "limite_min": 6.5,
-            "limite_max": 9.0,
-            "conforme": true
-          },
-          "conductivite": {
-            "valeur": 290,
-            "unite": "µS/cm",
-            "conforme": true
-          },
-          "turbidite": {
-            "valeur": 0.3,
-            "unite": "NTU",
-            "limite": 4,
-            "conforme": true
-          },
-          "metaux_lourds": {
-            "plomb": 0.001,
-            "cadmium": 0.0005,
-            "mercure": 0.0001,
-            "conforme": true
-          }
-        },
-        "certificat_url": "documents/analyses/domme_2025_05_28.pdf"
+        "date": "2025-09-20",
+        "statut": "attente",
+        "laboratoire": "carso",
+        "numero_analyse": "A_PROGRAMMER",
+        "note": "Première analyse prévue septembre 2025 - Sources Vivantes"
       },
       "caracteristiques": {
-        "frequentation": "forte",
-        "visiteurs_par_jour": "25-35",
+        "frequentation": "virale",
+        "visiteurs_par_jour": "files d'attente documentées",
         "acces": {
-          "parking": "Parking du belvédère de Domme",
-          "distance_parking": "300m",
-          "duree_marche": "8 min",
+          "parking": "Bas-côté RN21",
+          "distance_parking": "0m",
+          "duree_marche": "accès immédiat",
           "difficulte": "facile",
-          "pmr_accessible": true
+          "pmr_accessible": false,
+          "danger": "Traversée route nationale"
         },
         "source": {
-          "type": "source de falaise",
+          "type": "source miraculeuse légendaire",
           "debit": "constant",
-          "temperature": "11-13°C",
-          "profondeur": "résurgence naturelle"
+          "temperature": "fraîche", 
+          "profondeur": "source aménagée"
         }
       },
-      "description": "Source située sur le chemin des belvédères de Domme. Très appréciée des touristes visitant ce village classé 'Plus beaux villages de France'. Eau d'excellente qualité.",
-      "photos": [
-        "documents/images/sources/domme-claire-1.webp",
-        "documents/images/sources/domme-claire-2.webp",
-        "documents/images/sources/domme-belvedere.webp"
-      ],
-      "qr_code_url": "documents/qr-codes/domme-claire.png",
-      "points_forts": [
-        "✨ Qualité exceptionnelle de l'eau",
-        "🏔️ Cadre magnifique avec vue sur la vallée",
-        "🚶‍♀️ Accessible aux familles",
-        "📸 Spot photo apprécié"
-      ],
-      "historique_analyses": [
+      "description": "Source devenue phénomène viral sur les réseaux sociaux et médias. Files d'attente régulières, surtout en été. Usage intergénérationnel documenté (grands-parents → petits-enfants). Panneau 'eau non potable' systématiquement vandalisé par les usagers.",
+      "sources_medias": [
         {
-          "date": "2024-05-15",
-          "statut": "conforme",
-          "laboratoire": "ianesco",
-          "nitrates": 9.1,
-          "bacteries_coliformes": 0,
-          "ph": 7.5
+          "media": "France 3 Nouvelle-Aquitaine",
+          "date": "2020-06-15",
+          "url": "https://france3-regions.franceinfo.fr/nouvelle-aquitaine/dordogne/campsegret-un-miracle-qui-coule-de-source-1063671.html",
+          "citation": "Miracle je ne sais pas, mais on sait qu'elle a pu guérir de l'eczema"
+        },
+        {
+          "media": "France Bleu Périgord",
+          "date": "2025-08-15",
+          "url": "https://www.francebleu.fr/infos/societe/c-est-une-legende-locale-les-automobilistes-s-arretent-pour-boire-l-eau-de-cette-source-mysterieuse-en-dordogne-9593149",
+          "citation": "Les automobilistes font la queue pour boire l'eau"
         }
       ],
-      "installation_qr": "2025-03-22",
-      "derniere_visite_terrain": "2025-05-20"
+      "photos": [
+        "documents/images/sources/auvergnat-campsegret-1.webp",
+        "documents/images/sources/auvergnat-files.webp"
+      ],
+      "qr_code_url": "documents/qr-codes/auvergnat-campsegret.png",
+      "installation_qr": "2025-09-05",
+      "derniere_visite_terrain": "2025-08-20",
+      "usage_reel": "Files d'attente régulières, phénomène viral médiatique",
+      "problematique": "Aucune analyse malgré usage massif, propriétaire refuse responsabilité",
+      "legende_locale": "Homme auvergnat aurait fait sauter pierre, eau jaillit miraculeusement"
     },
 
-    "lavoir_beynac": {
-      "id": "lavoir_beynac",
-      "nom": "Source du Lavoir",
-      "commune": "Beynac-et-Cazenac",
+    "fontpeyrine_tursac": {
+      "id": "fontpeyrine_tursac", 
+      "nom": "Notre-Dame de Fontpeyrine",
+      "commune": "Tursac",
       "departement": "Dordogne",
-      "code_postal": "24220", 
+      "code_postal": "24620",
       "region": "Nouvelle-Aquitaine",
       "coordonnees": {
-        "lat": 44.8398,
-        "lng": 1.1426,
-        "altitude": 85
+        "lat": 44.9812,
+        "lng": 1.0298,
+        "altitude": 165
       },
       "derniere_analyse": {
-        "date": "2025-06-28",
+        "date": "2020-01-01",
         "statut": "conforme",
-        "laboratoire": "carso",
-        "numero_analyse": "CAR-2025-0628-BC",
+        "laboratoire": "mairie_tursac",
+        "numero_analyse": "MAIRIE-2020-FONTPEYRINE",
         "parametres": {
-          "nitrates": {
-            "valeur": 18.3,
-            "unite": "mg/L", 
-            "limite": 50,
-            "conforme": true
-          },
-          "bacteries_coliformes": {
-            "valeur": 0,
-            "unite": "CFU/100mL",
-            "limite": 0,
-            "conforme": true
-          },
-          "ph": {
-            "valeur": 6.9,
-            "unite": "",
-            "limite_min": 6.5,
-            "limite_max": 9.0,
-            "conforme": true
-          },
-          "conductivite": {
-            "valeur": 445,
-            "unite": "µS/cm",
-            "conforme": true
-          },
-          "turbidite": {
-            "valeur": 0.7,
-            "unite": "NTU",
-            "limite": 4,
-            "conforme": true
+          "potabilite_generale": {
+            "valeur": "conforme",
+            "unite": "analyse biologique",
+            "conforme": true,
+            "note": "Eau miraculeuse analysée potable selon mairie"
           }
         },
-        "certificat_url": "documents/analyses/beynac_2025_06_28.pdf"
+        "certificat_url": "documents/analyses/fontpeyrine_mairie_tursac.pdf"
       },
       "caracteristiques": {
-        "frequentation": "forte",
-        "visiteurs_par_jour": "30-45",
+        "frequentation": "patrimoniale et religieuse",
+        "visiteurs_par_jour": "pèlerins + touristes patrimoine",
         "acces": {
-          "parking": "Parking payant du château",
+          "parking": "Chemin rural Fontpeyrine",
           "distance_parking": "200m",
           "duree_marche": "5 min",
           "difficulte": "facile",
           "pmr_accessible": false
         },
         "source": {
-          "type": "source de village", 
-          "debit": "stable",
-          "temperature": "12-15°C",
-          "profondeur": "aménagement traditionnel"
+          "type": "source miraculeuse historique",
+          "debit": "mince filet d'eau constant",
+          "temperature": "fraîche",
+          "profondeur": "source dans oratoire"
         }
       },
-      "description": "Source alimentant l'ancien lavoir du village de Beynac. Point d'eau historique au pied du château classé. Très fréquentée par les visiteurs du site touristique.",
-      "photos": [
-        "documents/images/sources/beynac-lavoir-1.webp",
-        "documents/images/sources/beynac-lavoir-2.webp"
-      ],
-      "qr_code_url": "documents/qr-codes/beynac-lavoir.png",
-      "contexte_historique": "Cet ancien lavoir communal était le centre de la vie sociale du village. Les femmes s'y retrouvaient pour laver le linge et échanger les nouvelles.",
-      "historique_analyses": [
+      "description": "Source miraculeuse historique avec pèlerinages séculaires. 22 paroisses venaient en procession au Moyen Âge. Chapelle XIVe siècle, nombreux ex-voto contemporains. Pèlerinage annuel maintenu le 8 septembre. Eau analysée potable par la mairie.",
+      "historique_exceptionnel": {
+        "moyen_age": "22 paroisses en pèlerinage",
+        "processions": "Lundi Pentecôte + 8 septembre", 
+        "revolution": "Saccagée 1793, restaurée 1869",
+        "miracle_1769": "Village épargné par terrible tempête",
+        "actuel": "Pèlerinage 8 septembre maintenu"
+      },
+      "sources_medias": [
         {
-          "date": "2024-06-20",
-          "statut": "conforme",
-          "laboratoire": "carso",
-          "nitrates": 16.9,
-          "bacteries_coliformes": 0,
-          "ph": 7.1
+          "source": "Les Têtards Arboricoles",
+          "date": "2020-05-07",
+          "url": "https://lestetardsarboricoles.fr/wordpress/2020/05/07/laubepine-des-pelerins-tursac-dordogne/",
+          "citation": "Cette eau miraculeuse est potable !"
+        },
+        {
+          "source": "Mairie de Tursac",
+          "date": "2025",
+          "url": "https://tursac.jimdofree.com/l-histoire-de-tursac/chapelle-notre-dame-fontpeyrine/",
+          "citation": "Des offices religieux y ont lieu chaque année"
         }
       ],
-      "installation_qr": "2025-04-08",
-      "derniere_visite_terrain": "2025-06-25"
+      "photos": [
+        "documents/images/sources/fontpeyrine-chapelle.webp",
+        "documents/images/sources/fontpeyrine-exvoto.webp",
+        "documents/images/sources/fontpeyrine-source.webp"
+      ],
+      "qr_code_url": "documents/qr-codes/fontpeyrine-tursac.png",
+      "installation_qr": "2025-09-01",
+      "derniere_visite_terrain": "2025-08-18",
+      "usage_reel": "Pèlerinage annuel + tourisme patrimoine + usage traditionnel",
+      "avantage": "Déjà analysée potable, cadre historique exceptionnel",
+      "legende": "Bœuf gratta sol, statue Vierge découverte dans source jaillissante"
     },
 
-    "source_neuve_analysis": {
-      "id": "source_neuve_analysis", 
-      "nom": "Source Neuve",
-      "commune": "Sarlat-la-Canéda",
+    "saint_sicaire_brantome": {
+      "id": "saint_sicaire_brantome",
+      "nom": "Fontaine Saint-Sicaire", 
+      "commune": "Brantôme en Périgord",
       "departement": "Dordogne",
-      "code_postal": "24200",
+      "code_postal": "24310",
       "region": "Nouvelle-Aquitaine", 
       "coordonnees": {
-        "lat": 44.8912,
-        "lng": 1.2183,
-        "altitude": 165
+        "lat": 45.3623,
+        "lng": 0.6489,
+        "altitude": 104
       },
       "derniere_analyse": {
-        "date": "2025-08-10",
-        "statut": "attente",
-        "laboratoire": "eurofins",
-        "numero_analyse": "EUR-2025-0810-SN",
-        "parametres": {},
-        "note": "Prélèvements effectués, résultats attendus sous 10 jours ouvrés"
+        "date": "2025-09-25",
+        "statut": "attente", 
+        "laboratoire": "ianesco",
+        "numero_analyse": "A_PROGRAMMER",
+        "note": "Première analyse prévue septembre 2025 - Sources Vivantes"
       },
       "caracteristiques": {
-        "frequentation": "modérée",
-        "visiteurs_par_jour": "15-20",
+        "frequentation": "touristique forte",
+        "visiteurs_par_jour": "centaines (circuit abbaye)",
         "acces": {
-          "parking": "Parking des jardins publics",
-          "distance_parking": "400m",
-          "duree_marche": "10 min",
-          "difficulte": "facile",
+          "parking": "Centre-ville Brantôme",
+          "distance_parking": "100m",
+          "duree_marche": "2 min",
+          "difficulte": "très facile",
           "pmr_accessible": true
         },
         "source": {
-          "type": "source urbaine",
-          "debit": "régulier",
-          "temperature": "13-16°C",
-          "profondeur": "captage moderne"
+          "type": "source abbatiale troglodytique",
+          "debit": "constant", 
+          "temperature": "très fraîche (12-14°C)",
+          "profondeur": "grotte aménagée"
         }
       },
-      "description": "Source récemment intégrée au programme après signalement d'habitants de Sarlat. Première analyse en cours dans le cadre de l'extension du projet pilote.",
-      "photos": [
-        "documents/images/sources/sarlat-neuve-1.webp"
+      "description": "Fontaine historique dans grotte abbatiale bénédictine. Fondée 817 par Charlemagne, reliques Saint-Sicaire (enfant martyr). Intégrée circuit touristique officiel 'Venise du Périgord'. Réputée guérir enfants malades et rendre fécondes les femmes.",
+      "contexte_unesco": {
+        "abbaye": "Fondée 817 par Charlemagne",
+        "reliques": "Saint-Sicaire, enfant martyr",
+        "grotte": "Jugement dernier, 3 bas-reliefs monumentaux",
+        "tourisme": "Circuit officiel OT Périgord Dronne Belle"
+      },
+      "sources_medias": [
+        {
+          "media": "France Bleu Périgord", 
+          "date": "2022-01-17",
+          "url": "https://www.francebleu.fr/emissions/au-fil-de-l-eau-en-dordogne/perigord/la-fontaine-saint-sicaire-a-brantome",
+          "citation": "On ne résiste pas à l'envie de gouter et à défaut d'être magique, elle est très fraiche !"
+        },
+        {
+          "source": "Office Tourisme Brantôme",
+          "contact": "brantome@perigord-dronne-belle.fr",
+          "phone": "05 53 05 80 63"
+        }
       ],
-      "qr_code_url": "documents/qr-codes/sarlat-neuve.png",
-      "statut_projet": "nouveau",
-      "date_integration": "2025-07-15",
-      "installation_qr": "2025-08-01",
-      "contact_signalement": "Marie Dupont, habitante locale",
-      "prochaine_etape": "Publication des résultats d'analyse prévue fin août 2025"
+      "photos": [
+        "documents/images/sources/saint-sicaire-grotte.webp",
+        "documents/images/sources/saint-sicaire-abbaye.webp"
+      ],
+      "qr_code_url": "documents/qr-codes/saint-sicaire-brantome.png",
+      "installation_qr": "2025-09-10",
+      "derniere_visite_terrain": "2025-08-22", 
+      "usage_reel": "Intégré visite touristique abbaye, centaines visiteurs quotidiens été",
+      "avantage": "Vitrine touristique, accessibilité parfaite, cadre patrimonial unique",
+      "vertus_attribuees": "Guérison enfants malades, fertilité femmes"
     }
   },
 
@@ -514,7 +326,7 @@
 
   "programme_analyses": {
     "frequence": "annuelle",
-    "periode_optimale": "mai-septembre",
+    "periode_optimale": "septembre-octobre 2025 (lancement)",
     "parametres_systematiques": [
       "nitrates",
       "bacteries_coliformes", 
@@ -526,7 +338,7 @@
     ],
     "parametres_optionnels": [
       "metaux_lourds",
-      "pesticides",
+      "pesticides", 
       "hydrocarbures"
     ],
     "cout_analyse_standard": 280,
@@ -534,21 +346,44 @@
     "delai_resultats": "7-10 jours ouvrés"
   },
 
-  "statistiques": {
+  "statistiques_reelles": {
     "par_statut": {
-      "conforme": 3,
-      "non_conforme": 1,
-      "attente": 1
+      "conforme": 1,
+      "non_conforme": 0,
+      "attente": 3
     },
     "par_type_source": {
-      "resurgence": 2,
-      "fontaine_village": 2,
-      "captage_moderne": 1
+      "resurgence_naturelle": 1,
+      "source_miraculeuse": 2,
+      "source_abbatiale": 1
     },
     "taux_frequentation": {
-      "forte_tres_forte": 4,
-      "moderee": 1,
-      "faible": 0
+      "tres_forte": 2,
+      "forte": 1,
+      "patrimoniale": 1
+    },
+    "couverture_mediatique": {
+      "france_bleu": 3,
+      "france_3": 1,
+      "blogs_specialises": 1,
+      "offices_tourisme": 1
+    }
+  },
+
+  "planning_deploiement": {
+    "septembre_2025": {
+      "action": "Analyses laboratoires",
+      "sources": ["boulou_tursac", "auvergnat_campsegret", "saint_sicaire_brantome"],
+      "laboratoire": "Répartition Eurofins/CARSO/IANESCO"
+    },
+    "octobre_2025": {
+      "action": "Installation QR codes + publication résultats",
+      "sources": "Toutes sources analysées",
+      "communication": "Lancement médiatique"
+    },
+    "novembre_2025": {
+      "action": "Bilan phase pilote",
+      "objectif": "Retours usagers + impact médiatique"
     }
   }
 }
