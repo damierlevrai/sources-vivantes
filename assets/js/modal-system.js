@@ -4,151 +4,16 @@
    ============================================ */
 
 /* ============================================
-   1. DONNÉES DES SOURCES (Exemple)
-   ============================================ */
-
-const SOURCES_DATA = {
-    "demo": {
-        id: "demo",
-        nom: "Source de Démonstration",
-        commune: "Exemple-sur-Loire",
-        departement: "Dordogne",
-        coordonnees: {
-            lat: 44.9759,
-            lng: 1.0344
-        },
-        derniere_analyse: {
-            date: "2025-06-15",
-            statut: "conforme",
-            laboratoire: "Eurofins Environnement",
-            parametres: {
-                nitrates: 8.2,
-                nitrates_limite: 50,
-                bacteries: 0,
-                bacteries_limite: 0,
-                ph: 7.4,
-                ph_min: 6.5,
-                ph_max: 9.0,
-                conductivite: 420,
-                turbidite: 0.8
-            }
-        },
-        frequentation: "forte",
-        acces: "Parking à 100m, sentier balisé facile (5 min de marche)",
-        debit: "Constant toute l'année",
-        description: "Source naturelle très appréciée des randonneurs. Eau claire et fraîche.",
-        photos: ["demo-source-1.webp", "demo-source-2.webp"],
-        historique_analyses: [
-            {
-                date: "2024-06-10",
-                statut: "conforme",
-                nitrates: 7.8,
-                bacteries: 0
-            }
-        ]
-    },
-    
-    "boulou_tursac": {
-        id: "boulou_tursac",
-        nom: "Source du Boulou",
-        commune: "Tursac",
-        departement: "Dordogne",
-        coordonnees: {
-            lat: 44.9759,
-            lng: 1.0344
-        },
-        derniere_analyse: {
-            date: "2025-05-20",
-            statut: "conforme",
-            laboratoire: "CARSO Laboratoires",
-            parametres: {
-                nitrates: 12.5,
-                nitrates_limite: 50,
-                bacteries: 0,
-                bacteries_limite: 0,
-                ph: 7.1,
-                ph_min: 6.5,
-                ph_max: 9.0,
-                conductivite: 380,
-                turbidite: 0.5
-            }
-        },
-        frequentation: "très forte",
-        acces: "Parking gratuit, accès direct (2 min à pied)",
-        debit: "Abondant, stable",
-        description: "Source historique très fréquentée, plusieurs dizaines de visiteurs par jour.",
-        photos: ["boulou-1.webp", "boulou-2.webp"],
-        historique_analyses: [
-            {
-                date: "2024-05-15",
-                statut: "conforme",
-                nitrates: 11.8,
-                bacteries: 0
-            }
-        ]
-    },
-    
-    "fontaine_saint_martial": {
-        id: "fontaine_saint_martial",
-        nom: "Fontaine Saint-Martial",
-        commune: "Saint-Martial-de-Nabirat",
-        departement: "Dordogne",
-        coordonnees: {
-            lat: 44.8234,
-            lng: 1.2156
-        },
-        derniere_analyse: {
-            date: "2025-07-02",
-            statut: "non-conforme",
-            laboratoire: "Eurofins Environnement",
-            parametres: {
-                nitrates: 62.0,
-                nitrates_limite: 50,
-                bacteries: 15,
-                bacteries_limite: 0,
-                ph: 6.8,
-                ph_min: 6.5,
-                ph_max: 9.0,
-                conductivite: 580,
-                turbidite: 2.1
-            },
-            problemes: [
-                "Nitrates au-dessus de la limite (62 mg/L > 50 mg/L)",
-                "Présence de bactéries coliformes (15 CFU/100mL)"
-            ]
-        },
-        frequentation: "modérée",
-        acces: "Sentier de randonnée, 15 min de marche depuis le village",
-        debit: "Variable selon saison",
-        description: "Source traditionnelle nécessitant une surveillance renforcée.",
-        photos: ["saint-martial-1.webp"],
-        historique_analyses: [
-            {
-                date: "2024-07-05",
-                statut: "conforme",
-                nitrates: 45.2,
-                bacteries: 0
-            }
-        ],
-        recommandations: [
-            "Éviter la consommation directe",
-            "Faire bouillir l'eau avant usage",
-            "Nouvelle analyse prévue en septembre 2025"
-        ]
-    }
-};
-
-/* ============================================
-   2. VARIABLES GLOBALES
+   1. VARIABLES GLOBALES
    ============================================ */
 
 let map = null;
 let markers = [];
 let currentModal = null;
-let sourcesData = SOURCES_DATA;
+let sourcesData = {}; // Sera chargé depuis JSON
 
 /* ============================================
-   3. INITIALISATION GÉNÉRALE
+   2. INITIALISATION GÉNÉRALE
    ============================================ */
 
 function initModalSystem() {
@@ -158,9 +23,6 @@ function initModalSystem() {
     if (!document.getElementById('modal-overlay')) {
         createModalContainer();
     }
-    
-    // Mettre à jour les stats dans le hero
-    updateHeroStats();
     
     // Écouter les clics de fermeture
     document.addEventListener('click', handleModalClose);
@@ -184,6 +46,74 @@ function createModalContainer() {
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+/* ============================================
+   3. CHARGEMENT DONNÉES JSON
+   ============================================ */
+
+async function loadSourcesFromJSON() {
+    try {
+        console.log('🔄 Chargement des données sources depuis JSON...');
+        const response = await fetch('sources.json');
+        
+        if (response.ok) {
+            const data = await response.json();
+            sourcesData = data.sources || {};
+            
+            console.log('✅ Données sources chargées:', Object.keys(sourcesData).length, 'sources');
+            console.log('📊 Sources:', Object.keys(sourcesData));
+            
+            // Mettre à jour l'affichage
+            updateHeroStats();
+            if (map) {
+                addSourceMarkers();
+            }
+            
+            return true;
+        } else {
+            throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+    } catch (error) {
+        console.warn('⚠️ Impossible de charger sources.json:', error.message);
+        console.log('📁 Utilisation des données par défaut (mode démo)');
+        
+        // Données de démonstration minimales si JSON indisponible
+        sourcesData = {
+            "demo": {
+                id: "demo",
+                nom: "Source de Démonstration",
+                commune: "Exemple-sur-vézère",
+                departement: "Dordogne",
+                coordonnees: { lat: 44.9759, lng: 1.0344 },
+                derniere_analyse: {
+                    date: "2025-06-15",
+                    statut: "conforme",
+                    laboratoire: "Mode démonstration",
+                    parametres: {
+                        nitrates: 8.2,
+                        nitrates_limite: 50,
+                        bacteries: 0,
+                        bacteries_limite: 0,
+                        ph: 7.4,
+                        ph_min: 6.5,
+                        ph_max: 9.0
+                    }
+                },
+                caracteristiques: {
+                    frequentation: "forte",
+                    acces: {
+                        parking: "Parking à 100m",
+                        duree_marche: "5 min de marche"
+                    }
+                },
+                description: "Source de démonstration pour présentation du système Sources Vivantes."
+            }
+        };
+        
+        updateHeroStats();
+        return false;
+    }
 }
 
 /* ============================================
@@ -241,6 +171,10 @@ function generateSourceModalContent(source) {
     
     const config = statusConfig[statut] || statusConfig['attente'];
     
+    // Adapter les champs selon la structure JSON réelle
+    const caracteristiques = source.caracteristiques || {};
+    const acces = caracteristiques.acces || {};
+    
     return `
         <div class="source-modal-content">
             <!-- Statut principal -->
@@ -271,31 +205,16 @@ function generateSourceModalContent(source) {
                     <h4 style="color: #0891b2; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
                         <span>🚶‍♀️</span> Accès
                     </h4>
-                    <p><strong>Fréquentation :</strong> ${source.frequentation}</p>
-                    <p><strong>Accès :</strong> ${source.acces}</p>
-                    <p><strong>Débit :</strong> ${source.debit}</p>
+                    <p><strong>Fréquentation :</strong> ${caracteristiques.frequentation || 'Non renseignée'}</p>
+                    <p><strong>Parking :</strong> ${acces.parking || 'Non renseigné'}</p>
+                    <p><strong>Marche :</strong> ${acces.duree_marche || 'Non renseigné'}</p>
                 </div>
             </div>
 
-            <!-- Paramètres d'analyse -->
-            <div class="analysis-section" style="margin-bottom: 2rem;">
-                <h4 style="color: #0891b2; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <span>🧪</span> Paramètres d'analyse
-                </h4>
-                
-                <div class="parameters-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                    ${generateParameterCard('Nitrates', analyse.parametres.nitrates, analyse.parametres.nitrates_limite, 'mg/L')}
-                    ${generateParameterCard('Bactéries', analyse.parametres.bacteries, analyse.parametres.bacteries_limite, 'CFU/100mL')}
-                    ${generateParameterCard('pH', analyse.parametres.ph, `${analyse.parametres.ph_min}-${analyse.parametres.ph_max}`, '')}
-                    ${generateParameterCard('Conductivité', analyse.parametres.conductivite, null, 'µS/cm')}
-                </div>
-            </div>
-
+            ${analyse.parametres ? generateParametersSection(analyse.parametres) : ''}
             ${analyse.problemes ? generateProblemsSection(analyse.problemes) : ''}
             ${source.recommandations ? generateRecommendationsSection(source.recommandations) : ''}
-
-            <!-- Historique -->
-            ${generateHistorySection(source.historique_analyses)}
+            ${source.historique_analyses ? generateHistorySection(source.historique_analyses) : ''}
 
             <!-- Description -->
             <div class="source-description" style="margin: 2rem 0; padding: 1.5rem; background: rgba(8, 145, 178, 0.05); border-radius: 12px;">
@@ -306,7 +225,7 @@ function generateSourceModalContent(source) {
             <!-- Actions -->
             <div class="source-actions" style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
                 <button onclick="shareSource('${source.id}')" class="btn btn-secondary">
-                    <span>📤</span> Partager
+                    <span>🔤</span> Partager
                 </button>
                 <button onclick="showOnMap('${source.id}')" class="btn btn-primary">
                     <span>🗺️</span> Voir sur la carte
@@ -324,6 +243,48 @@ function generateSourceModalContent(source) {
             </div>
         </div>
     `;
+}
+
+function generateParametersSection(parametres) {
+    if (!parametres) return '';
+    
+    let paramCards = '';
+    
+    // Nitrates
+    if (parametres.nitrates !== undefined) {
+        paramCards += generateParameterCard('Nitrates', parametres.nitrates, parametres.nitrates_limite || 50, 'mg/L');
+    }
+    
+    // Bactéries
+    if (parametres.bacteries !== undefined) {
+        paramCards += generateParameterCard('Bactéries', parametres.bacteries, parametres.bacteries_limite || 0, 'CFU/100mL');
+    }
+    
+    // pH
+    if (parametres.ph !== undefined) {
+        const phLimit = `${parametres.ph_min || 6.5}-${parametres.ph_max || 9.0}`;
+        paramCards += generateParameterCard('pH', parametres.ph, phLimit, '');
+    }
+    
+    // Conductivité
+    if (parametres.conductivite !== undefined) {
+        paramCards += generateParameterCard('Conductivité', parametres.conductivite, null, 'µS/cm');
+    }
+    
+    if (paramCards) {
+        return `
+            <div class="analysis-section" style="margin-bottom: 2rem;">
+                <h4 style="color: #0891b2; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>🧪</span> Paramètres d'analyse
+                </h4>
+                <div class="parameters-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    ${paramCards}
+                </div>
+            </div>
+        `;
+    }
+    
+    return '';
 }
 
 function generateParameterCard(name, value, limit, unit) {
@@ -434,7 +395,131 @@ function closeModal() {
 }
 
 /* ============================================
-   5. ACTIONS DES SOURCES
+   5. GOOGLE MAPS INTEGRATION
+   ============================================ */
+
+function initMap() {
+    console.log('🗺️ Initialisation Google Maps');
+    
+    const mapElement = document.getElementById('map');
+    if (!mapElement) {
+        console.log('❌ Élément carte non trouvé');
+        return;
+    }
+    
+    // Initialiser la carte
+    map = new google.maps.Map(mapElement, {
+        center: SOURCES_CONFIG.map.defaultCenter,
+        zoom: SOURCES_CONFIG.map.defaultZoom,
+        styles: getMapStyles(),
+        gestureHandling: 'cooperative'
+    });
+    
+    // Ajouter les marqueurs des sources
+    addSourceMarkers();
+    
+    // Initialiser les filtres
+    initMapFilters();
+    
+    console.log('✅ Google Maps initialisé');
+}
+
+function getMapStyles() {
+    return [
+        {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{ "color": "#e9f4f7" }]
+        },
+        {
+            "featureType": "landscape",
+            "elementType": "geometry",
+            "stylers": [{ "color": "#f5f9f5" }]
+        }
+    ];
+}
+
+function addSourceMarkers() {
+    // Supprimer les marqueurs existants
+    markers.forEach(marker => marker.setMap(null));
+    markers = [];
+    
+    Object.values(sourcesData).forEach(source => {
+        const marker = createSourceMarker(source);
+        markers.push(marker);
+    });
+}
+
+function createSourceMarker(source) {
+    const statusConfig = {
+        'conforme': { color: '#10b981', icon: '✅' },
+        'non-conforme': { color: '#ef4444', icon: '❌' },
+        'attente': { color: '#f59e0b', icon: '🔄' }
+    };
+    
+    const config = statusConfig[source.derniere_analyse.statut] || statusConfig['attente'];
+    
+    const markerIcon = {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 8,
+        fillColor: config.color,
+        fillOpacity: 0.8,
+        strokeColor: '#ffffff',
+        strokeWeight: 2
+    };
+    
+    const marker = new google.maps.Marker({
+        position: source.coordonnees,
+        map: map,
+        title: `${source.nom} - ${source.commune}`,
+        icon: markerIcon,
+        sourceId: source.id
+    });
+    
+    const infoContent = `
+        <div style="max-width: 300px; font-family: -apple-system, sans-serif;">
+            <h3 style="margin: 0 0 0.5rem; color: #0891b2; font-size: 1.1rem;">${source.nom}</h3>
+            <p style="margin: 0 0 0.5rem; color: #6b7280; font-size: 0.9rem;">${source.commune}, ${source.departement}</p>
+            
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin: 0.8rem 0; padding: 0.5rem; background: ${config.color}20; border-radius: 6px;">
+                <span style="font-size: 1.2rem;">${config.icon}</span>
+                <span style="font-weight: 600; color: ${config.color};">
+                    ${source.derniere_analyse.statut === 'conforme' ? 'Conforme' : 
+                      source.derniere_analyse.statut === 'non-conforme' ? 'Non conforme' : 'En attente'}
+                </span>
+            </div>
+            
+            <p style="margin: 0.5rem 0; font-size: 0.85rem; color: #6b7280;">
+                Analyse du ${formatDate(source.derniere_analyse.date)}
+            </p>
+            
+            <div style="margin-top: 1rem; text-align: center;">
+                <button onclick="openSource('${source.id}')" 
+                        style="background: #0891b2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                    Voir les détails
+                </button>
+            </div>
+        </div>
+    `;
+    
+    const infoWindow = new google.maps.InfoWindow({
+        content: infoContent
+    });
+    
+    marker.addListener('click', () => {
+        markers.forEach(m => {
+            if (m.infoWindow) m.infoWindow.close();
+        });
+        infoWindow.open(map, marker);
+    });
+    
+    marker.infoWindow = infoWindow;
+    
+    return marker;
+}
+
+/* ============================================
+   6. ACTIONS DES SOURCES
    ============================================ */
 
 function shareSource(sourceId) {
@@ -455,7 +540,6 @@ function shareSource(sourceId) {
             showNotification('Lien copié dans le presse-papiers !', 'success');
         });
     } else {
-        // Fallback : sélectionner le texte
         const textarea = document.createElement('textarea');
         textarea.value = message;
         document.body.appendChild(textarea);
@@ -469,20 +553,17 @@ function shareSource(sourceId) {
 function showOnMap(sourceId) {
     closeModal();
     
-    // Scroller vers la carte
     const mapSection = document.getElementById('carte');
     if (mapSection) {
         mapSection.scrollIntoView({ behavior: 'smooth' });
     }
     
-    // Centrer la carte sur la source
     setTimeout(() => {
         const source = sourcesData[sourceId];
         if (source && map) {
             map.setCenter(source.coordonnees);
             map.setZoom(15);
             
-            // Ouvrir l'info window du marqueur correspondant
             const marker = markers.find(m => m.sourceId === sourceId);
             if (marker && marker.infoWindow) {
                 marker.infoWindow.open(map, marker);
@@ -520,157 +601,19 @@ Cordialement`;
 }
 
 /* ============================================
-   6. GOOGLE MAPS INTEGRATION
+   7. GESTIONNAIRES D'ÉVÉNEMENTS
    ============================================ */
 
-function initMap() {
-    console.log('🗺️ Initialisation Google Maps');
-    
-    const mapElement = document.getElementById('map');
-    if (!mapElement) {
-        console.log('❌ Élément carte non trouvé');
-        return;
+function handleModalClose(event) {
+    if (event.target.id === 'modal-overlay' || event.target.classList.contains('modal-close')) {
+        closeModal();
     }
-    
-    // Initialiser la carte
-    map = new google.maps.Map(mapElement, {
-        center: SOURCES_CONFIG.map.defaultCenter,
-        zoom: SOURCES_CONFIG.map.defaultZoom,
-        styles: getMapStyles(),
-        gestureHandling: 'cooperative'
-    });
-    
-    // Ajouter les marqueurs des sources
-    addSourceMarkers();
-    
-    // Initialiser les filtres
-    initMapFilters();
-    
-    console.log('✅ Google Maps initialisé');
 }
 
-function getMapStyles() {
-    // Style de carte personnalisé (thème eau/nature)
-    return [
-        {
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [
-                { "color": "#e9f4f7" }
-            ]
-        },
-        {
-            "featureType": "water",
-            "elementType": "labels.text.fill",
-            "stylers": [
-                { "color": "#0891b2" }
-            ]
-        },
-        {
-            "featureType": "landscape",
-            "elementType": "geometry",
-            "stylers": [
-                { "color": "#f5f9f5" }
-            ]
-        },
-        {
-            "featureType": "road",
-            "elementType": "geometry",
-            "stylers": [
-                { "color": "#ffffff" }
-            ]
-        },
-        {
-            "featureType": "poi.park",
-            "elementType": "geometry",
-            "stylers": [
-                { "color": "#e8f5e9" }
-            ]
-        }
-    ];
-}
-
-function addSourceMarkers() {
-    // Supprimer les marqueurs existants
-    markers.forEach(marker => marker.setMap(null));
-    markers = [];
-    
-    Object.values(sourcesData).forEach(source => {
-        const marker = createSourceMarker(source);
-        markers.push(marker);
-    });
-}
-
-function createSourceMarker(source) {
-    const statusConfig = {
-        'conforme': { color: '#10b981', icon: '✅' },
-        'non-conforme': { color: '#ef4444', icon: '❌' },
-        'attente': { color: '#f59e0b', icon: '🔄' }
-    };
-    
-    const config = statusConfig[source.derniere_analyse.statut] || statusConfig['attente'];
-    
-    // Créer l'icône personnalisée
-    const markerIcon = {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: 8,
-        fillColor: config.color,
-        fillOpacity: 0.8,
-        strokeColor: '#ffffff',
-        strokeWeight: 2
-    };
-    
-    const marker = new google.maps.Marker({
-        position: source.coordonnees,
-        map: map,
-        title: `${source.nom} - ${source.commune}`,
-        icon: markerIcon,
-        sourceId: source.id
-    });
-    
-    // Créer l'info window
-    const infoContent = `
-        <div style="max-width: 300px; font-family: -apple-system, sans-serif;">
-            <h3 style="margin: 0 0 0.5rem; color: #0891b2; font-size: 1.1rem;">${source.nom}</h3>
-            <p style="margin: 0 0 0.5rem; color: #6b7280; font-size: 0.9rem;">${source.commune}, ${source.departement}</p>
-            
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin: 0.8rem 0; padding: 0.5rem; background: ${config.color}20; border-radius: 6px;">
-                <span style="font-size: 1.2rem;">${config.icon}</span>
-                <span style="font-weight: 600; color: ${config.color};">
-                    ${source.derniere_analyse.statut === 'conforme' ? 'Conforme' : 
-                      source.derniere_analyse.statut === 'non-conforme' ? 'Non conforme' : 'En attente'}
-                </span>
-            </div>
-            
-            <p style="margin: 0.5rem 0; font-size: 0.85rem; color: #6b7280;">
-                Analyse du ${formatDate(source.derniere_analyse.date)}
-            </p>
-            
-            <div style="margin-top: 1rem; text-align: center;">
-                <button onclick="openSource('${source.id}')" 
-                        style="background: #0891b2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;">
-                    Voir les détails
-                </button>
-            </div>
-        </div>
-    `;
-    
-    const infoWindow = new google.maps.InfoWindow({
-        content: infoContent
-    });
-    
-    marker.addListener('click', () => {
-        // Fermer les autres info windows
-        markers.forEach(m => {
-            if (m.infoWindow) m.infoWindow.close();
-        });
-        
-        infoWindow.open(map, marker);
-    });
-    
-    marker.infoWindow = infoWindow;
-    
-    return marker;
+function handleKeyDown(event) {
+    if (event.key === 'Escape' && currentModal) {
+        closeModal();
+    }
 }
 
 function initMapFilters() {
@@ -726,7 +669,6 @@ function locateUser() {
             map.setCenter(userLocation);
             map.setZoom(12);
             
-            // Ajouter un marqueur pour l'utilisateur
             new google.maps.Marker({
                 position: userLocation,
                 map: map,
@@ -756,22 +698,6 @@ function locateUser() {
 }
 
 /* ============================================
-   7. GESTIONNAIRES D'ÉVÉNEMENTS
-   ============================================ */
-
-function handleModalClose(event) {
-    if (event.target.id === 'modal-overlay' || event.target.classList.contains('modal-close')) {
-        closeModal();
-    }
-}
-
-function handleKeyDown(event) {
-    if (event.key === 'Escape' && currentModal) {
-        closeModal();
-    }
-}
-
-/* ============================================
    8. UTILITAIRES
    ============================================ */
 
@@ -788,7 +714,6 @@ function updateHeroStats() {
     const totalSources = Object.keys(sourcesData).length;
     const conformes = Object.values(sourcesData).filter(s => s.derniere_analyse.statut === 'conforme').length;
     
-    // Mettre à jour les stats dans le hero
     const totalElement = document.getElementById('total-sources');
     const conformesElement = document.getElementById('conformes');
     
@@ -797,44 +722,17 @@ function updateHeroStats() {
 }
 
 function showNotification(message, type = 'info') {
-    console.log(`📢 ${type.toUpperCase()}: ${message}`);
+    console.log(`🔢 ${type.toUpperCase()}: ${message}`);
     
-    // Cette fonction sera utilisée par les autres scripts
-    // Utilise le système de notification déjà défini dans index.html
     if (typeof window.showNotification === 'function') {
         window.showNotification(message, type);
     }
 }
 
 /* ============================================
-   9. CHARGEMENT DE DONNÉES EXTERNES (OPTIONNEL)
+   9. EXPORTS GLOBAUX
    ============================================ */
 
-async function loadSourcesFromJSON() {
-    try {
-        const response = await fetch('documents/data/sources.json');
-        if (response.ok) {
-            const data = await response.json();
-            sourcesData = { ...sourcesData, ...data.sources };
-            
-            // Mettre à jour l'affichage
-            updateHeroStats();
-            if (map) {
-                addSourceMarkers();
-            }
-            
-            console.log('✅ Données sources chargées depuis JSON');
-        }
-    } catch (error) {
-        console.warn('⚠️ Impossible de charger sources.json, utilisation des données par défaut');
-    }
-}
-
-/* ============================================
-   10. EXPORTS GLOBAUX
-   ============================================ */
-
-// Exporter les fonctions vers window pour usage global
 window.initModalSystem = initModalSystem;
 window.openSource = openSource;
 window.closeModal = closeModal;
@@ -843,20 +741,22 @@ window.locateUser = locateUser;
 window.shareSource = shareSource;
 window.showOnMap = showOnMap;
 window.reportProblem = reportProblem;
+window.loadSourcesFromJSON = loadSourcesFromJSON;
 
 /* ============================================
-   11. INITIALISATION AUTO
+   10. INITIALISATION AUTO
    ============================================ */
 
-// Auto-initialisation quand le DOM est prêt
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+        await loadSourcesFromJSON(); // CHARGER JSON EN PREMIER
         initModalSystem();
-        loadSourcesFromJSON();
     });
 } else {
-    initModalSystem();
-    loadSourcesFromJSON();
+    (async () => {
+        await loadSourcesFromJSON(); // CHARGER JSON EN PREMIER
+        initModalSystem();
+    })();
 }
 
 console.log('🌊 Sources Vivantes Modal System chargé');
