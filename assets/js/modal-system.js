@@ -55,7 +55,7 @@ function createModalContainer() {
 async function loadSourcesFromJSON() {
     try {
         console.log('🔄 Chargement des données sources depuis JSON...');
-        const response = await fetch('sources.json');
+        const response = await fetch('documents/data/sources.json');
         
         if (response.ok) {
             const data = await response.json();
