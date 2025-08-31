@@ -215,7 +215,7 @@ p {
 }
 
 section[id] {
-    scroll-margin-top: 40px;
+    scroll-margin-top: 0px;
 }
 
 /* ============================================
