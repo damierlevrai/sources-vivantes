@@ -215,9 +215,11 @@ p {
 }
 
 section[id] {
-    scroll-margin-top: 10px;
+    scroll-margin-top: -10px;
 }
-
+#accueil {
+    scroll-margin-top: 100px;  /* Reset pour la section accueil */
+}
 /* ============================================
    6. LAYOUT GÉNÉRAL
    ============================================ */
