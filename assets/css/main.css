@@ -821,8 +821,10 @@ section[id] {
 
 .benefit-item {
     display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
     padding: 1.5rem;
     background: white;
     border-radius: var(--border-radius);
@@ -834,12 +836,18 @@ section[id] {
     font-size: 2.5rem;
     flex-shrink: 0;
     filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.2));
+    margin-bottom: 0.5rem;
+}
+
+.benefit-content {
+    text-align: center;
 }
 
 .benefit-content h4 {
     color: var(--primary-green);
     margin-bottom: 0.8rem;
     font-size: 1.2rem;
+    text-align: center;
 }
 
 .benefit-content p {
@@ -847,6 +855,7 @@ section[id] {
     line-height: 1.6;
     margin: 0;
     font-size: 0.95rem;
+    text-align: center;
 }
 
 /* ============================================
