@@ -1,5 +1,5 @@
 {
-  "name": "Sources vivantes",
+  "name": "Sources",
   "short_name": "Sources",
   "icons": [
     {
@@ -16,6 +16,6 @@
     }
   ],
   "theme_color": "#ffffff",
-  "background_color": "#262e76",
+  "background_color": "#ffffff",
   "display": "standalone"
 }
